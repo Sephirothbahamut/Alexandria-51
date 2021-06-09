@@ -77,7 +77,8 @@ ds_list_destroy(adj_tiles);
           <argument>
             <kind>1</kind>
             <string>/// Toggle tile
-if(Tile_get(id) != Invert_tiles_controller.i_COMPLETE)
+if(Tile_get(id) != Invert_tiles_controller.i_PASSED &amp;&amp;
+    Tile_get(id) != Invert_tiles_controller.i_FAILED)
 {
     Tile_toggle(id);
     
