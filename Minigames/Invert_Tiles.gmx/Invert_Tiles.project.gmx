@@ -33,6 +33,11 @@
         <script>scripts\Invert_tiles_controller_check.gml</script>
       </scripts>
     </scripts>
+    <scripts name="cheats">
+      <script>scripts\win.gml</script>
+      <script>scripts\lose.gml</script>
+      <script>scripts\reset.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Arial12</font>
@@ -41,6 +46,7 @@
   <objects name="objects">
     <object>objects\Tile</object>
     <object>objects\Invert_tiles_controller</object>
+    <object>objects\Cheat_console</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_Main</room>

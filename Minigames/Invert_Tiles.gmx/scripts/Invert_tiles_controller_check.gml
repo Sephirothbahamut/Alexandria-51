@@ -11,6 +11,6 @@ with(Tile)
 if(b_win)
 {
     itc.b_passed = true;
-    itc.alarm[itc.i_TIMER] = 1; //TODO decouple alarm and what timer value drawn   
+    itc.alarm[itc.i_TIMER] = 1;   
 }
 

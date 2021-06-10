@@ -25,53 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Constants
-
-// Max time available for puzzle
-i_MAX_TIME = 60;
-
-// Tile states
-i_OFF = 0;
-i_ON = 1;
-i_PASSED = 2;
-i_FAILED = 3;
-
-// Alarms
-i_TIMER = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Init
 
-b_passed = false;
-f_time_left = i_MAX_TIME;
-alarm[i_TIMER] = i_MAX_TIME * room_speed;
+s_cmd = "";
+b_visible = false;
+map_s_commands = ds_map_create();
 
-create_ring(true);
-
+map_s_commands[? "win"] = win;
+map_s_commands[? "lose"] = lose;
+map_s_commands[? "reset"] = reset;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -88,26 +56,8 @@ create_ring(true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Time ended
-
-if(b_passed)
-{
-    with(Tile)
-    {
-        Tile_set(id, Invert_tiles_controller.i_PASSED);
-    }
-    
-    show_debug_message("You won in "+ string(i_MAX_TIME - f_time_left) + " seconds!");
-}
-else
-{
-    with(Tile)
-    {
-        Tile_set(id, Invert_tiles_controller.i_FAILED);
-    }
-    
-    show_debug_message("You lost");
-}
+            <string>/// Destroy
+ds_map_destroy(map_s_commands);
 </string>
           </argument>
         </arguments>
@@ -130,15 +80,11 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Update stats
-
-if(!b_passed)
+            <string>if(b_visible)
 {
-    f_time_left = alarm[i_TIMER] / room_speed;
-
-    if(f_time_left &lt; 0)     
-        f_time_left = 0;
+    s_cmd = keyboard_string;
 }
+    
 
 </string>
           </argument>
@@ -162,12 +108,72 @@ if(!b_passed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw timer
+            <string>/// Draw console
+if(b_visible)
+{
+    draw_set_alpha(0.5);
+    
+    draw_rectangle(0, 0, room_width, room_height/8, 1);
+    
+    draw_text(0, 0, string(s_cmd)); 
+}
+else
+{
+    draw_set_alpha(1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Toggle console
+b_visible = !b_visible
+keyboard_string = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Call cheat
+var cheat = map_s_commands[? s_cmd];
+if(!is_undefined(cheat))
+    script_execute(cheat);
 
-draw_set_font(fnt_Arial20);
-draw_set_color(c_black);
-
-draw_text(64, 64, string(f_time_left)); 
+keyboard_string = "";
 </string>
           </argument>
         </arguments>
