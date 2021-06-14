@@ -8,5 +8,8 @@ var i_spr_h = sprite_get_height(spr_Emitter);
 var emitter_new = instance_create(f_orig_x + i_grid_x * i_spr_w, 
                             f_orig_y + i_grid_y * i_spr_h, Emitter);
 
+emitter_new.i_grid_x = i_grid_x;
+emitter_new.i_grid_y = i_grid_y;
+                            
 return emitter_new;
 

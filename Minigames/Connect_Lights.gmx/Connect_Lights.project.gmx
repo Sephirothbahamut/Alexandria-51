@@ -14,6 +14,17 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="arrays">
+      <script>scripts\_valid_index_1.gml</script>
+      <script>scripts\valid_index_slow.gml</script>
+      <script>scripts\valid_index.gml</script>
+      <script>scripts\_valid_index_2.gml</script>
+    </scripts>
+    <scripts name="coords">
+      <script>scripts\coords_sum.gml</script>
+      <script>scripts\coords_create.gml</script>
+      <script>scripts\coords_to_string.gml</script>
+    </scripts>
     <scripts name="directions">
       <script>scripts\angle_to_axis.gml</script>
       <script>scripts\axis_to_dir4.gml</script>
@@ -21,11 +32,16 @@
       <script>scripts\axis_to_angle.gml</script>
       <script>scripts\dir4_to_axis.gml</script>
       <script>scripts\dir8_to_axis.gml</script>
+      <script>scripts\snap_angle_8.gml</script>
+      <script>scripts\snap_angle_4.gml</script>
+      <script>scripts\angle_to_dir4.gml</script>
     </scripts>
-    <scripts name="coords">
-      <script>scripts\coords_sum.gml</script>
-      <script>scripts\coords_create.gml</script>
-      <script>scripts\coords_to_string.gml</script>
+    <scripts name="level">
+      <script>scripts\grid_create.gml</script>
+      <script>scripts\create_walls.gml</script>
+      <script>scripts\object_spawner.gml</script>
+      <script>scripts\grid_set_tile.gml</script>
+      <script>scripts\eval_laser.gml</script>
     </scripts>
     <scripts name="Methods">
       <scripts name="Emitter">
@@ -41,12 +57,10 @@
         <script>scripts\Reflector_create.gml</script>
       </scripts>
     </scripts>
-    <script>scripts\grid_create.gml</script>
-    <script>scripts\object_spawner.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Emitter</object>
-    <object>objects\Controller</object>
+    <object>objects\Connect_Lights_Controller</object>
     <object>objects\Wall</object>
     <object>objects\Sensor</object>
     <object>objects\Reflector</object>

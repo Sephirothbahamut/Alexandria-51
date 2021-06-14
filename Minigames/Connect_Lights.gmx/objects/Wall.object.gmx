@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>/// Init
+
+i_grid_x = 0;
+i_grid_y = 0;
 </string>
           </argument>
         </arguments>

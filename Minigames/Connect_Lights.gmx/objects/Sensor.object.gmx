@@ -27,6 +27,39 @@
             <kind>1</kind>
             <string>/// Init
 image_speed = 0;
+
+i_grid_x = 0;
+i_grid_y = 0;
+
+dir4_hit = noone;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Change state
+
+if(dir4_hit == noone)
+    image_index = 0;
+else
+    image_index = 1;
 </string>
           </argument>
         </arguments>
