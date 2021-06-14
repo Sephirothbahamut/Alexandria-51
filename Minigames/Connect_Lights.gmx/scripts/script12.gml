@@ -1,0 +1,2 @@
+/// Emitter_create()
+
