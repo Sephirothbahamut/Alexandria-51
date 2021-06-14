@@ -1,5 +1,5 @@
-/// create_grid()
-
+/// level_create_old()
+/*
 randomize();
 
 // grid size values
@@ -12,20 +12,14 @@ var i_grid_w = irandom_range(i_min_w, i_max_w);
 var i_max_symbols = 3;//irandom_range(3, sprite_get_number(spr_Tile));
 
 // Grid generation and initialization
-var arr_tile_grid;
-
 show_debug_message("Init");
-for(var i = 0; i < i_grid_h; i++)
-{
-    // Initializing the last element of each row initializes the whole row to 0
-    arr_tile_grid[i, i_grid_w - 1] = 0;
-}
+var arr_tile_grid = create_array(i_grid_h, i_grid_w);
 
 // Correct pattern generation
-var arr_i_pattern;
+var arr_i_pattern = create_array(i_max_symbols);
 
 show_debug_message("Pattern");
-for(var i = i_max_symbols - 1; i >= 0 ; i--)
+for(var i = 0; i < i_max_symbols ; i++)
 {
     arr_i_pattern[i] = irandom(i_max_symbols - 1);
     show_debug_message(arr_i_pattern[i]);
@@ -33,25 +27,24 @@ for(var i = i_max_symbols - 1; i >= 0 ; i--)
 
 
 // Correct path generation
-var i_i = irandom(i_grid_h - 1); var i_j = 0; 
+var i_y = irandom(i_grid_h - 1); var i_x = 0; 
 var i_current_sym = 0;
 var i_dir_h = 0; var i_dir_w = 0;
 
 show_debug_message("Path");
-show_debug_message(i_grid_w);
-while(i_j < i_grid_w-1)
+while(i_x < i_grid_w-1)
 {
     // Check next position validity (if in bounds and free)
-    if(in_array2d_bounds(i_i+i_dir_h, i_j+i_dir_w, i_grid_w, i_grid_h) && arr_tile_grid[i_i+i_dir_h, i_j+i_dir_w] == 0) 
+    if(valid_index(i_x+i_dir_w, i_y+i_dir_h, i_grid_w, i_grid_h) && arr_tile_grid[i_y+i_dir_h, i_x+i_dir_w] == 0) 
     {
-        i_i += i_dir_h;
-        i_j += i_dir_w;
+        i_y += i_dir_h;
+        i_x += i_dir_w;
         
-        arr_tile_grid[i_i, i_j] = Tile_create(arr_i_pattern[i_current_sym]);
+        arr_tile_grid[i_y, i_x] = Tile_create(arr_i_pattern[i_current_sym]);
         
         i_current_sym = (i_current_sym + 1) mod i_max_symbols;
         
-        show_debug_message(string(i_i) + " " + string(i_j))
+        show_debug_message(string(i_y) + " " + string(i_x))
         
     }
     
@@ -71,9 +64,9 @@ while(i_j < i_grid_w-1)
 
 // Rest of grid random filling
 show_debug_message("Fill");
-for(var i = i_grid_h-1; i >= 0; i--)
+for(var i = 0; i < i_grid_h; i++)
 {   
-    for(var j = i_grid_w-1; j >= 0; j--)
+    for(var j = 0; j < i_grid_w; j++)
     {
         if(arr_tile_grid[i, j] == 0)
             arr_tile_grid[i, j] = Tile_create(irandom(i_max_symbols-1));
@@ -136,4 +129,4 @@ for(var i = 0; i < i_h_fence_amount; i++)
     fence.x = i_base_offset + ((i_grid_w) * i_tile_size) + 20;
     fence.y = i_base_offset - 10 + i_fence_size * i;
 }
-
+*/

@@ -27,31 +27,11 @@
             <kind>1</kind>
             <string>/// Init
 b_visible = true;
-i_symbol = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="Player">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Check collision
-show_debug_message(i_symbol);
+i_grid_x = 0;
+i_grid_y = 0;
+i_sol = noone;
+
+image_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -74,10 +54,16 @@ show_debug_message(i_symbol);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw
+            <string>draw_sprite(sprite_index, image_index, x, y)
 
-if(b_visible)
-    draw_sprite(spr_Tile, i_symbol, x, y)
+if(i_sol != noone)
+{
+    draw_set_valign(fa_middle);
+    draw_set_halign(fa_center);
+    draw_set_color(c_black);
+    draw_set_font(fnt_Arial12);
+    draw_text(x+sprite_get_width(sprite_index)/2, y+sprite_get_height(sprite_index)/2, string(i_sol));
+}
 </string>
           </argument>
         </arguments>

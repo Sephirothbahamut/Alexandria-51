@@ -1,28 +1,28 @@
-/// axis_to_dir(x, y)
+/// axis_to_angle(x, y)
 var _x = argument0;
 var _y = argument1;
 
 if( _x == 1 and _y == 0)
-    return i_DIR_RR;
+    return angle_RR;
 
 if( _x == 1 and _y == -1)
-    return i_DIR_UR;
+    return angle_UR;
 
 if( _x == 0 and _y == -1)
-    return i_DIR_UP;
+    return angle_UP;
 
 if( _x == -1 and _y == -1)
-    return i_DIR_UL;
+    return angle_UL;
     
 if( _x == -1 and _y == 0)
-    return i_DIR_LL;
+    return angle_LL;
     
 if( _x == -1 and _y == 1)
-    return i_DIR_DL;
+    return angle_DL;
     
 if( _x == 0 and _y == 1)
-    return i_DIR_DW;
+    return angle_DW;
     
 if( _x == 1 and _y == 1)
-    return i_DIR_DR;
+    return angle_DR;
     

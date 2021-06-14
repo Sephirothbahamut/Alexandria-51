@@ -1,4 +1,4 @@
-/// axis_create(f_x, f_y)
+/// coords_create(f_x, f_y)
 var f_x = argument0; var f_y = argument1;
 
 var arr_f_ret;

@@ -60,7 +60,7 @@ var v = keyboard_check(ord('S'))-keyboard_check(ord('W'));
 
 if(h != 0 or v != 0)
 {
-    direction = axis_to_dir(h,v);
+    direction = axis_to_angle(h,v);
     speed = max_speed;
     if (place_meeting(x+hspeed, y+vspeed, Fence)) speed=0;
 }
@@ -92,14 +92,14 @@ else
             <kind>1</kind>
             <string>/// Draw anim
 
-var axis = dir_to_axis(direction);
-var constr_dir = axis_to_4(axis[0], axis[1]);
+var axis = angle_to_axis(direction);
+var constr_dir = axis_to_dir4(axis[0], axis[1]);
 switch(constr_dir)
 {
-    case i_RR: sprite_index = spr_Char_right; break;
-    case i_UP: sprite_index = spr_Char_back; break;
-    case i_LL: sprite_index = spr_Char_left; break;
-    case i_DW: sprite_index = spr_Char_front; break;
+    case dir4_RR: sprite_index = spr_Char_right; break;
+    case dir4_UP: sprite_index = spr_Char_back; break;
+    case dir4_LL: sprite_index = spr_Char_left; break;
+    case dir4_DW: sprite_index = spr_Char_front; break;
 }
     
 image_speed = speed / 20;
