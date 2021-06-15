@@ -9,7 +9,9 @@ var f_orig_y = (room_height / 2) - ((i_grid_h * sprite_get_height(spr_Wall)) / 2
 create_walls(grid_tile);
 
 grid_set_tile(grid_tile, 4, 2, Reflector_create(4, 2, f_orig_x, f_orig_y));
-grid_set_tile(grid_tile, 6, 3, Reflector_create(6, 3, f_orig_x, f_orig_y));
+var tmp_Reflector = Reflector_create(6, 3, f_orig_x, f_orig_y);
+tmp_Reflector.image_angle = angle_DW;
+grid_set_tile(grid_tile, 6, 3, tmp_Reflector);
 grid_set_tile(grid_tile, 4, 7, Emitter_create(4, 7, f_orig_x, f_orig_y));
 grid_set_tile(grid_tile, 9, 3, Emitter_create(9, 3, f_orig_x, f_orig_y));
 grid_set_tile(grid_tile, 0, 2, Sensor_create(0, 2, f_orig_x, f_orig_y));
