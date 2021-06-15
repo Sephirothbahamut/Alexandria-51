@@ -29,17 +29,15 @@ var f_angle; var f_cos; var f_sin; var f_box;
 for(var i = 0; i < 8; i++)
 {
     f_angle = 360 * (i / 8);
-    f_cos = cos(degtorad(f_angle));
-    f_sin = sin(degtorad(f_angle));
     f_box = 0;
     
-    // Se voglio generare l'anello a quadrato, modifico la distanza delle
-    // tile oblique
-    if(b_square && abs(f_cos) != 1 && abs(f_sin) != 1) 
+    // check for diagonal tiles
+    if(b_square && ((f_angle / 45) mod 2) != 0) 
         f_box = f_width * (sqrt(2)-1);
         
-    arr_tile_ring[i].x = (f_box + f_width) * f_cos + f_cx;
-    arr_tile_ring[i].y = (f_box + f_height) * f_sin + f_cy;
+    arr_tile_ring[i].x = f_cx + lengthdir_x(f_width + f_box, f_angle);
+    arr_tile_ring[i].y = f_cy + lengthdir_y(f_height + f_box, f_angle);
+    
     //show_debug_message(string(arr_tile_ring[i].x));
     //show_debug_message(string(arr_tile_ring[i].y)+"\n");
 }

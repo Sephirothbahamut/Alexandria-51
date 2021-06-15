@@ -1,7 +1,8 @@
 /// win()
 // cheat only for debug purposes
-with(Invert_tiles_controller)
+with(Tile)
 {
-    b_passed = true;
-    alarm[i_TIMER] = 1;
+    Tile_set(id, Invert_tiles_controller.i_ON);
 }
+
+Invert_tiles_controller_check();

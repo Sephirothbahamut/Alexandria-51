@@ -10,7 +10,14 @@ with(Tile)
 
 if(b_win)
 {
-    itc.b_passed = true;
-    itc.alarm[itc.i_TIMER] = 1;   
+    itc.b_passed = true;  
+    itc.f_time_elapsed = itc.i_MAX_TIME - itc.f_time_left;
+     
+    with(Tile)
+    {
+        Tile_set(id, itc.i_PASSED);
+    }
+    
+    show_debug_message("You won in "+ string(itc.f_time_elapsed) + " seconds!");
 }
 

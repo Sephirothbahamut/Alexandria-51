@@ -61,10 +61,11 @@ i_TIMER = 0;
             <string>/// Init
 
 b_passed = false;
+f_time_elapsed = 0;
 f_time_left = i_MAX_TIME;
 alarm[i_TIMER] = i_MAX_TIME * room_speed;
 
-create_ring(false);
+create_ring(true);
 
 </string>
           </argument>
@@ -90,16 +91,7 @@ create_ring(false);
             <kind>1</kind>
             <string>/// Time ended
 
-if(b_passed)
-{
-    with(Tile)
-    {
-        Tile_set(id, Invert_tiles_controller.i_PASSED);
-    }
-    
-    show_debug_message("You won in "+ string(i_MAX_TIME - f_time_left) + " seconds!");
-}
-else
+if(!b_passed)
 {
     with(Tile)
     {
@@ -132,13 +124,12 @@ else
             <kind>1</kind>
             <string>/// Update stats
 
-if(!b_passed)
-{
-    f_time_left = alarm[i_TIMER] / room_speed;
+f_time_left = alarm[i_TIMER] / room_speed;
 
-    if(f_time_left &lt; 0)     
-        f_time_left = 0;
-}
+if(f_time_left &lt; 0)     
+    f_time_left = 0;
+
+
 
 </string>
           </argument>
