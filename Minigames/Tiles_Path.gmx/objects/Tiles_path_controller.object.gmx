@@ -25,27 +25,58 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Constants
+
+// Max time available for puzzle
+i_MAX_TIME = 60;
+
+// Alarms
+i_TIMER = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Init
 
- randomize();
+randomize();
 
 // Level setup
-var level_data = level_create(10, 7, 8, 4);
+var level_data = level_create(10, 7, 4, 4);
 
 // Level data unpacking
-grid_tile     =     level_data[0];
-var coords_player = level_data[1];
-arr_i_pattern =     level_data[2];
+grid_tile           =     level_data[0];
+coords_player_start =     level_data[1];
+arr_i_pattern       =     level_data[2];
 
 i_pattern_length = array_length_1d(arr_i_pattern);
-tile_current = grid_tile[# coords_player[X], coords_player[Y]];
+tile_current = grid_tile[# coords_player_start[X], coords_player_start[Y]];
 
 // Gameplay
 stack_tile_path = ds_stack_create();
 ds_stack_push(stack_tile_path, tile_current);
 
 i_symbol_idx = 0;
-
+b_passed = false;
+b_failed = false;
+f_time_elapsed = 0;
+f_time_left = i_MAX_TIME;
+alarm[i_TIMER] = i_MAX_TIME * room_speed;
 
 // Graphics
 x = tile_current.x;
@@ -83,6 +114,35 @@ ds_stack_destroy(stack_tile_path);
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Time ended
+
+if(!b_passed)
+{
+    b_failed = true;
+    minigame_end(false);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -104,9 +164,15 @@ ds_stack_destroy(stack_tile_path);
 var i_h = keyboard_check(ord('D'))-keyboard_check(ord('A'));
 var i_v = keyboard_check(ord('S'))-keyboard_check(ord('W'));
 
-if((i_h != 0 or i_v != 0) and speed == 0)
+if(Cheat_console.b_visible)
 {
-    show_debug_message(i_symbol_idx);
+    i_h = 0;
+    i_v = 0;
+}
+
+if((i_h != 0 or i_v != 0) and speed == 0 and !b_passed and !b_failed)
+{
+    //show_debug_message(i_symbol_idx);
     var dir4_mov = dir4_to_axis(axis_to_dir4(i_h, i_v));
     var coords_target = coords_sum(dir4_mov, 
                 coords_create(tile_current.i_grid_x, tile_current.i_grid_y));
@@ -136,11 +202,20 @@ if((i_h != 0 or i_v != 0) and speed == 0)
             tile_current = tile_target;
             
             i_symbol_idx = (i_symbol_idx + 1) mod i_pattern_length;
+            
+            // if i'm in the last column i won
+            if(coords_target[X] == ds_grid_width(grid_tile) - 1)
+            {
+                b_passed = true;
+                minigame_end(true);
+            }
         }
-        // YOulose
+        // Tile is wrong
         else
         {
-            show_message("Adios");
+            tile_current = tile_target;
+            b_failed = true;
+            minigame_end(false);
         }
     }
 }
@@ -175,6 +250,31 @@ else
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Update timer
+f_time_left = alarm[i_TIMER] / room_speed;
+
+if(f_time_left &lt; 0)     
+    f_time_left = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -199,15 +299,73 @@ var i_pattern_length = array_length_1d(arr_i_pattern);
 var f_pattern_width = f_tile_width * i_pattern_length;
 
 var f_orig_x = room_width/2 - f_pattern_width / 2; 
-var f_orig_y = 32;
+var f_orig_y = 64;
 
 for(var i = 0; i &lt; i_pattern_length; i++)
 {
-    var c_curr_patt_tile = c_white;
-    if(i == i_symbol_idx)
-        c_curr_patt_tile = c_aqua;
-    draw_sprite_ext(spr_Tile, arr_i_pattern[i], f_orig_x + (i * f_tile_width), f_orig_y, 1, 1, 0, c_curr_patt_tile, 1);
+    if(i == ((i_symbol_idx + 1) mod i_pattern_length))
+        draw_sprite_ext(spr_Arrow, 0, f_orig_x + (i * f_tile_width) + f_tile_width / 2, f_orig_y - sprite_get_width(spr_Arrow) / 2, 0.5, 0.5, 1, c_white, 1);
+    
+    draw_sprite(spr_Tile, arr_i_pattern[i], f_orig_x + (i * f_tile_width), f_orig_y);
 } 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw timer
+
+draw_set_font(fnt_Arial20);
+draw_set_color(c_black);
+
+draw_text(64, 64, string(f_time_left)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw character
+draw_sprite(sprite_index, image_index, x, y);
+
+if(speed == 0)
+{
+    if(b_failed)
+        sprite_index = spr_Char_down;
+    else if(b_passed)
+        sprite_index = spr_Char_happy;
+}
 </string>
           </argument>
         </arguments>

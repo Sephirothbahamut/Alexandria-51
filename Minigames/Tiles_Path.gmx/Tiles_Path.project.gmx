@@ -6,6 +6,7 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprite>sprites\spr_Arrow</sprite>
     <sprite>sprites\spr_Tile</sprite>
     <sprite>sprites\spr_Tile_old</sprite>
     <sprites name="Character">
@@ -13,6 +14,8 @@
       <sprite>sprites\spr_Char_front</sprite>
       <sprite>sprites\spr_Char_right</sprite>
       <sprite>sprites\spr_Char_back</sprite>
+      <sprite>sprites\spr_Char_down</sprite>
+      <sprite>sprites\spr_Char_happy</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -32,9 +35,6 @@
         <script>scripts\Tile_create.gml</script>
         <script>scripts\Tile_set.gml</script>
         <script>scripts\Tile_get.gml</script>
-      </scripts>
-      <scripts name="Fence">
-        <script>scripts\Fence_create.gml</script>
       </scripts>
     </scripts>
     <scripts name="arrays">
@@ -59,6 +59,14 @@
       <script>scripts\coords_sum.gml</script>
       <script>scripts\coords_to_string.gml</script>
     </scripts>
+    <script>scripts\minigame_end.gml</script>
+    <scripts name="cheats">
+      <script>scripts\win.gml</script>
+      <script>scripts\lose.gml</script>
+      <script>scripts\reset.gml</script>
+      <script>scripts\show.gml</script>
+      <script>scripts\no_time.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Arial12</font>
@@ -67,6 +75,7 @@
   <objects name="objects">
     <object>objects\Tile</object>
     <object>objects\Tiles_path_controller</object>
+    <object>objects\Cheat_console</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_Main</room>
