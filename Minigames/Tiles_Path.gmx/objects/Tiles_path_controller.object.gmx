@@ -87,6 +87,36 @@ image_speed = 0.05;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Load cheats
+with(Cheat_console)
+{
+    map_s_commands[? "win"] = win;
+    map_s_commands[? "lose"] = lose;
+    map_s_commands[? "no_time"] = no_time;
+    map_s_commands[? "restart"] = restart;
+    map_s_commands[? "show"] = show;
+    map_s_commands[? "reset"] = reset;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="1" enumb="0">
       <action>
@@ -109,6 +139,28 @@ image_speed = 0.05;
 
 ds_grid_destroy(grid_tile);
 ds_stack_destroy(stack_tile_path);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Unload cheats
+ds_map_clear(Cheat_console.map_s_commands);
 </string>
           </argument>
         </arguments>
@@ -207,6 +259,7 @@ if((i_h != 0 or i_v != 0) and speed == 0 and !b_passed and !b_failed)
             if(coords_target[X] == ds_grid_width(grid_tile) - 1)
             {
                 b_passed = true;
+                f_time_elapsed = i_MAX_TIME - f_time_left;
                 minigame_end(true);
             }
         }

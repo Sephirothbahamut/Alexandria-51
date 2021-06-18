@@ -63,9 +63,10 @@
     <scripts name="cheats">
       <script>scripts\win.gml</script>
       <script>scripts\lose.gml</script>
-      <script>scripts\reset.gml</script>
+      <script>scripts\restart.gml</script>
       <script>scripts\show.gml</script>
       <script>scripts\no_time.gml</script>
+      <script>scripts\reset.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -74,8 +75,8 @@
   </fonts>
   <objects name="objects">
     <object>objects\Tile</object>
-    <object>objects\Tiles_path_controller</object>
     <object>objects\Cheat_console</object>
+    <object>objects\Tiles_path_controller</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_Main</room>

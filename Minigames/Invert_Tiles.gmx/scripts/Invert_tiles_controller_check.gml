@@ -18,6 +18,7 @@ if(b_win)
         Tile_set(id, itc.i_PASSED);
     }
     
-    show_debug_message("You won in "+ string(itc.f_time_elapsed) + " seconds!");
+    minigame_end(true);
+    //show_debug_message("You won in "+ string(itc.f_time_elapsed) + " seconds!");
 }
 

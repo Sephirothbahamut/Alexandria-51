@@ -12,8 +12,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\verify_arg.gml</script>
-    <script>scripts\create_square.gml</script>
-    <script>scripts\create_ring.gml</script>
     <scripts name="directions">
       <script>scripts\axis_create.gml</script>
       <script>scripts\axis_to_4.gml</script>
@@ -38,6 +36,11 @@
       <script>scripts\lose.gml</script>
       <script>scripts\reset.gml</script>
     </scripts>
+    <scripts name="level">
+      <script>scripts\create_ring.gml</script>
+      <script>scripts\create_square.gml</script>
+    </scripts>
+    <script>scripts\minigame_end.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_Arial12</font>
