@@ -16,12 +16,13 @@ for(var i = 0; i < array_length_1d(arr_coords_path); i++)
 {
     var coords_path_elem = arr_coords_path[i];
     grid_tile[# coords_path_elem[X], coords_path_elem[Y]].i_sol = i;
-    grid_tile[# coords_path_elem[X], coords_path_elem[Y]].image_index = 4;
+    //grid_tile[# coords_path_elem[X], coords_path_elem[Y]].image_index = 2;
 }
 
 
 // impacchetta tutto
 level_data[0] = grid_tile;
 level_data[1] = arr_coords_path[0];
+level_data[2] = arr_coords_path[i-1];
 
 return level_data;

@@ -31,7 +31,7 @@ b_show_path = false;
 i_grid_x = 0;
 i_grid_y = 0;
 i_sol = noone;
-
+b_is_enlighted = false;
 image_speed = 0;
 </string>
           </argument>
@@ -81,6 +81,9 @@ image_angle = (image_angle + 90) mod 360;
             <kind>1</kind>
             <string>/// Rotate piece clockwise
 image_angle = (image_angle - 90 + 360) mod 360;
+
+grid_reset_lights();
+Cable_enlight_neighboors(Cables_path_controller.grid_tile[#Cables_path_controller.coords_start_light[X],Cables_path_controller.coords_start_light[Y]]);
 </string>
           </argument>
         </arguments>
@@ -104,8 +107,11 @@ image_angle = (image_angle - 90 + 360) mod 360;
           <argument>
             <kind>1</kind>
             <string>/// Draw Cable
+var image_to_use = image_index;
+if(b_is_enlighted)
+    image_to_use = image_index + 2;
 
-draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
+draw_sprite_ext(sprite_index, image_to_use, x, y, 1, 1, image_angle, c_white, 1);
 
 /*
 if(i_sol != noone &amp;&amp; b_show_path)
