@@ -20,6 +20,7 @@
       <script>scripts\dir4_to_axis.gml</script>
       <script>scripts\dir8_to_axis.gml</script>
       <script>scripts\dir4_to_angle.gml</script>
+      <script>scripts\angle_to_dir4.gml</script>
     </scripts>
     <scripts name="Methods">
       <scripts name="Cable">
@@ -55,6 +56,7 @@
       <script>scripts\coords_create.gml</script>
       <script>scripts\coords_sum.gml</script>
       <script>scripts\coords_to_string.gml</script>
+      <script>scripts\coords_align.gml</script>
     </scripts>
     <script>scripts\minigame_end.gml</script>
     <scripts name="cheats">

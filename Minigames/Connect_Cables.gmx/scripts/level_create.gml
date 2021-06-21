@@ -10,15 +10,32 @@ var grid_tile = grid_create(i_grid_w, i_grid_h, i_n_cables);
 // genera percorso
 var arr_coords_path = array_flip(path_create(i_grid_w, i_grid_h));
 
+var coords_prev_path_elem = arr_coords_path[0];
+var coords_path_elem = 0;
+var coords_next_path_elem = 0;
 
+//la prima immagine del path
+grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].image_index = 1;
+grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].i_sol = 0;
 // cambia il simbolo delle tile del percorso secondo pattern
-for(var i = 0; i < array_length_1d(arr_coords_path); i++)
+for(var i = 1; i < array_length_1d(arr_coords_path)-1; i++)
 {
-    var coords_path_elem = arr_coords_path[i];
+    coords_prev_path_elem = arr_coords_path[i-1];
+    coords_path_elem = arr_coords_path[i];
+    coords_next_path_elem = arr_coords_path[i+1];
+    if(coords_align(coords_prev_path_elem,coords_next_path_elem)){
+        grid_tile[# coords_path_elem[X], coords_path_elem[Y]].image_index = 1;
+    }else{
+        grid_tile[# coords_path_elem[X], coords_path_elem[Y]].image_index = 0;
+    }
     grid_tile[# coords_path_elem[X], coords_path_elem[Y]].i_sol = i;
-    //grid_tile[# coords_path_elem[X], coords_path_elem[Y]].image_index = 2;
+    
+    
 }
-
+//l'ultima immagine del path
+grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].image_index = 1;
+grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].b_is_last_path = true;
+grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].i_sol = array_length_1d(arr_coords_path)-1;
 
 // impacchetta tutto
 level_data[0] = grid_tile;

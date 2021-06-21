@@ -33,6 +33,7 @@ i_grid_y = 0;
 i_sol = noone;
 b_is_enlighted = false;
 image_speed = 0;
+b_is_last_path = false;
 </string>
           </argument>
         </arguments>
@@ -84,6 +85,7 @@ image_angle = (image_angle - 90 + 360) mod 360;
 
 grid_reset_lights();
 Cable_enlight_neighboors(Cables_path_controller.grid_tile[#Cables_path_controller.coords_start_light[X],Cables_path_controller.coords_start_light[Y]]);
+
 </string>
           </argument>
         </arguments>
@@ -108,19 +110,21 @@ Cable_enlight_neighboors(Cables_path_controller.grid_tile[#Cables_path_controlle
             <kind>1</kind>
             <string>/// Draw Cable
 var image_to_use = image_index;
+if(b_is_last_path)
+    image_to_use = image_index + 3;
 if(b_is_enlighted)
     image_to_use = image_index + 2;
 
 draw_sprite_ext(sprite_index, image_to_use, x, y, 1, 1, image_angle, c_white, 1);
 
-/*
 if(i_sol != noone &amp;&amp; b_show_path)
 {
     draw_set_valign(fa_middle);
     draw_set_halign(fa_center);
-    draw_set_color(c_black);
-    draw_text(x+sprite_get_width(sprite_index)/2, y+sprite_get_height(sprite_index)/2, string(i_sol));
-}*/
+    draw_set_color(c_white);
+    //draw_text(x+sprite_get_width(sprite_index)/2, y+sprite_get_height(sprite_index)/2, string(i_sol));
+    draw_text(x, y, string(i_sol));
+}
 </string>
           </argument>
         </arguments>
