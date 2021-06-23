@@ -7,13 +7,6 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_Cables</sprite>
-    <sprite>sprites\spr_Arrow</sprite>
-    <sprite>sprites\spr_Char_back</sprite>
-    <sprite>sprites\spr_Char_down</sprite>
-    <sprite>sprites\spr_Char_front</sprite>
-    <sprite>sprites\spr_Char_happy</sprite>
-    <sprite>sprites\spr_Char_left</sprite>
-    <sprite>sprites\spr_Char_right</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -27,14 +20,20 @@
       <script>scripts\dir4_to_axis.gml</script>
       <script>scripts\dir8_to_axis.gml</script>
       <script>scripts\dir4_to_angle.gml</script>
+      <script>scripts\angle_to_dir4.gml</script>
     </scripts>
     <scripts name="Methods">
       <scripts name="Cable">
         <script>scripts\Cable_create.gml</script>
         <script>scripts\Cable_set.gml</script>
-        <script>scripts\Tile_get.gml</script>
+        <script>scripts\Cable_get.gml</script>
+        <script>scripts\Cables_are_connected.gml</script>
+        <script>scripts\Cables_are_connected_right.gml</script>
+        <script>scripts\Cable_set_enlight_status.gml</script>
+        <script>scripts\Cable_enlight_neighboors.gml</script>
+        <script>scripts\Cable_is_enlighted.gml</script>
+        <script>scripts\Cable_enlight_single_neighboor.gml</script>
       </scripts>
-      <script>scripts\Fence_create.gml</script>
     </scripts>
     <scripts name="arrays">
       <script>scripts\valid_index.gml</script>
@@ -51,11 +50,13 @@
       <script>scripts\grid_create.gml</script>
       <script>scripts\path_create.gml</script>
       <script>scripts\next_coords.gml</script>
+      <script>scripts\grid_reset_lights.gml</script>
     </scripts>
     <scripts name="coords">
       <script>scripts\coords_create.gml</script>
       <script>scripts\coords_sum.gml</script>
       <script>scripts\coords_to_string.gml</script>
+      <script>scripts\coords_align.gml</script>
     </scripts>
     <script>scripts\minigame_end.gml</script>
     <scripts name="cheats">
@@ -72,9 +73,8 @@
   </fonts>
   <objects name="objects">
     <object>objects\Cable</object>
-    <object>objects\Pipes_path_controller</object>
+    <object>objects\Cables_path_controller</object>
     <object>objects\Cheat_console</object>
-    <object>objects\Player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_Main</room>
