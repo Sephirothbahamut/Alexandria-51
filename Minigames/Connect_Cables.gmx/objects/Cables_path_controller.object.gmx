@@ -67,23 +67,13 @@ grid_tile           =     level_data[0];
 coords_start_light  =     level_data[1];
 coords_end_light    =     level_data[2];
 
-tile_current = grid_tile[# coords_start_light[X], coords_start_light[Y]];
-
-// Gameplay
-stack_tile_path = ds_stack_create();
-ds_stack_push(stack_tile_path, tile_current);
-
-i_symbol_idx = 0;
 b_passed = false;
 b_failed = false;
 f_time_elapsed = 0;
 f_time_left = i_MAX_TIME;
 alarm[i_TIMER] = i_MAX_TIME * room_speed;
 
-// Graphics
-x = tile_current.x;
-y = tile_current.y;
-
+//resetting the lights
 grid_reset_lights();
 </string>
           </argument>
@@ -110,7 +100,6 @@ grid_reset_lights();
             <string>/// Destroy DS stuff
 
 ds_grid_destroy(grid_tile);
-ds_stack_destroy(stack_tile_path);
 </string>
           </argument>
         </arguments>
@@ -223,6 +212,34 @@ draw_set_font(fnt_Arial20);
 draw_set_color(c_black);
 
 draw_text(64, 64, string(f_time_left)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Start and End arrows
+draw_set_valign(fa_middle);
+draw_set_halign(fa_center);
+draw_set_color(c_black);
+var pstart = grid_tile[# coords_start_light[X], coords_start_light[Y]];
+var pend = grid_tile[# coords_end_light[X], coords_end_light[Y]];
+draw_arrow(pstart.x-48,pstart.y,pstart.x-24,pstart.y, 8 );
+draw_arrow(pend.x+24,pend.y,pend.x+48,pend.y, 8 );
 </string>
           </argument>
         </arguments>

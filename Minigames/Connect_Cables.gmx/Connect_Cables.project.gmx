@@ -26,12 +26,10 @@
       <scripts name="Cable">
         <script>scripts\Cable_create.gml</script>
         <script>scripts\Cable_set.gml</script>
-        <script>scripts\Cable_get.gml</script>
         <script>scripts\Cables_are_connected.gml</script>
         <script>scripts\Cables_are_connected_right.gml</script>
         <script>scripts\Cable_set_enlight_status.gml</script>
         <script>scripts\Cable_enlight_neighboors.gml</script>
-        <script>scripts\Cable_is_enlighted.gml</script>
         <script>scripts\Cable_enlight_single_neighboor.gml</script>
       </scripts>
     </scripts>
@@ -62,9 +60,10 @@
     <scripts name="cheats">
       <script>scripts\win.gml</script>
       <script>scripts\lose.gml</script>
-      <script>scripts\reset.gml</script>
+      <script>scripts\restart.gml</script>
       <script>scripts\show.gml</script>
       <script>scripts\no_time.gml</script>
+      <script>scripts\reset.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

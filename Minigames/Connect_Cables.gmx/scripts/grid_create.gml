@@ -11,7 +11,6 @@ for(var _y = 0; _y < i_grid_h; _y++)
     for(var _x = 0; _x < i_grid_w; _x++)
     {
         grid_tile[# _x, _y] = Cable_create(_x, _y, f_orig_x, f_orig_y, irandom(i_n_cables-1), irandom(3));
-        //grid_tile[# _x, _y] = Cable_create(_x, _y, f_orig_x, f_orig_y, 1, dir4_LL);
     }
 }
 
