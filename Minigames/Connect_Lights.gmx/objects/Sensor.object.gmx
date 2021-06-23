@@ -31,13 +31,13 @@ image_speed = 0;
 i_grid_x = 0;
 i_grid_y = 0;
 
-dir4_incoming_hit = noone;
+b_on = false;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -54,12 +54,8 @@ dir4_incoming_hit = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Change state
-
-if(dir4_incoming_hit == noone)
-    image_index = 0;
-else
-    image_index = 1;
+            <string>/// Draw sprite
+draw_sprite(sprite_index, b_on, x, y);
 </string>
           </argument>
         </arguments>

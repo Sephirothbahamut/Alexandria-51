@@ -3,12 +3,39 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>5</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Constants
+
+// Max time available for puzzle
+i_MAX_TIME = 60;
+
+// Alarms
+i_TIMER = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -32,8 +59,47 @@ i_grid_h = 8;
 f_orig_x = (room_width / 2) - ((i_grid_w * sprite_get_width(spr_Wall)) / 2);
 f_orig_y = (room_height / 2) - ((i_grid_h * sprite_get_height(spr_Wall)) / 2);
 
-grid_tile = grid_create(i_grid_w, i_grid_h);
+grid_tile = grid_create(i_grid_w, i_grid_h, 5);
 
+b_passed = false;
+f_time_elapsed = 0;
+f_time_left = i_MAX_TIME;
+alarm[i_TIMER] = i_MAX_TIME * room_speed;
+
+/// Start emitters 
+with(Emitter)
+{
+    eval_laser(id);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Load cheats
+with(Cheat_console)
+{
+    map_s_commands[? "win"] = win;
+    map_s_commands[? "lose"] = lose;
+    map_s_commands[? "restart"] = restart;
+    map_s_commands[? "reset"] = reset;
+    map_s_commands[? "no_time"] = no_time;
+}
 </string>
           </argument>
         </arguments>
@@ -56,8 +122,36 @@ grid_tile = grid_create(i_grid_w, i_grid_h);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Destroy grid
+            <string>/// Destroy grids
 ds_grid_destroy(grid_tile);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Time ended
+if(!b_passed)
+{
+    Connect_Lights_Controller_check();
+    minigame_end(false);
+}
 </string>
           </argument>
         </arguments>
@@ -80,17 +174,84 @@ ds_grid_destroy(grid_tile);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Evaluating Winning Conditions
-var b_is_winning = true;
-with(Sensor)
-{
-    if(dir4_incoming_hit == noone)
-        b_is_winning = false;
-}
+            <string>/// Update timer
+f_time_left = alarm[i_TIMER] / room_speed;
 
-if(b_is_winning)
-   show_message("Win");             
-    
+if(f_time_left &lt; 0)     
+    f_time_left = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw timer
+
+draw_set_font(fnt_Arial20);
+draw_set_color(c_black);
+
+draw_text(64, 64, string(f_time_left)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw background
+var i_spr_w = sprite_get_width(spr_Floor);
+var i_spr_h = sprite_get_height(spr_Floor);
+
+var f_bg_x = f_orig_x - i_spr_w;
+var f_bg_y = f_orig_y - i_spr_h;
+
+var i_bg_h = i_grid_h + 2;
+var i_bg_w = i_grid_w + 2;
+
+for(var _y = 0; _y &lt; i_bg_h; _y++)
+{   
+    for(var _x = 0; _x &lt; i_bg_w; _x++)
+    {
+        f_spr_x = f_bg_x + _x * i_spr_w; 
+        f_spr_y = f_bg_y + _y * i_spr_h;
+        
+        if(_y == 0 || _y == i_bg_h - 1 || _x == 0 || _x == i_bg_w - 1)
+            draw_sprite(spr_Wall, 0, f_spr_x, f_spr_y);
+        else
+            draw_sprite(spr_Floor, 0, f_spr_x, f_spr_y);
+    }
+}
 </string>
           </argument>
         </arguments>

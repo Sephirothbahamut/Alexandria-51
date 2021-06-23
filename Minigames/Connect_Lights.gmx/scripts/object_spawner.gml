@@ -6,11 +6,6 @@ var obj_spawned = noone;
 var i_to_spawn;
 
 randomize();
-
-if( _y == 0 || _y == (i_grid_h - 1) || _x == 0 || _x == (i_grid_w - 1) )
-    i_to_spawn = 4;
-else 
-    i_to_spawn = irandom(3);
     
 switch(i_to_spawn)
 {

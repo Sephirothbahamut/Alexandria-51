@@ -37,64 +37,8 @@ i_grid_x = 0;
 i_grid_y = 0;
 
 dir4_incoming_hit = noone;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Calculate reflection
-coords_dir_laser = noone;
 
-if(dir4_incoming_hit != noone)
-{
-    switch(angle_to_dir4(image_angle))
-    {
-        case dir4_RR: 
-            if(dir4_incoming_hit == dir4_LL)
-                coords_dir_laser = dir4_to_axis(dir4_UP);
-            else if(dir4_incoming_hit == dir4_DW)
-                coords_dir_laser = dir4_to_axis(dir4_RR);
-            break;
-        case dir4_UP: 
-            if(dir4_incoming_hit == dir4_DW)
-                coords_dir_laser = dir4_to_axis(dir4_LL);
-            else if(dir4_incoming_hit == dir4_RR)
-                coords_dir_laser = dir4_to_axis(dir4_UP);
-            break;
-        case dir4_LL: 
-            if(dir4_incoming_hit == dir4_RR)
-                coords_dir_laser = dir4_to_axis(dir4_DW);
-            else if(dir4_incoming_hit == dir4_UP)
-                coords_dir_laser = dir4_to_axis(dir4_LL);
-            break;
-        case dir4_DW: 
-            if(dir4_incoming_hit == dir4_UP)
-                coords_dir_laser = dir4_to_axis(dir4_RR);
-            else if(dir4_incoming_hit == dir4_LL)
-                coords_dir_laser = dir4_to_axis(dir4_DW);
-            break;
-    }
-    
-    if(coords_dir_laser != noone)
-        eval_laser(id, coords_dir_laser);
-}
+f_orig_angle = 0;
 </string>
           </argument>
         </arguments>
@@ -117,8 +61,9 @@ if(dir4_incoming_hit != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Rotate piece counterclockwise
-image_angle = (image_angle + 90) mod 360;
+            <string>/// Rotate counterclockwise
+if(!Connect_Lights_Controller.b_passed &amp;&amp; Connect_Lights_Controller.f_time_left &gt; 0)
+    Reflector_rotate(id, false);
 </string>
           </argument>
         </arguments>
@@ -141,14 +86,15 @@ image_angle = (image_angle + 90) mod 360;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Rotate piece clockwise
-image_angle = (image_angle - 90 + 360) mod 360;
+            <string>/// Rotate clockwise
+if(!Connect_Lights_Controller.b_passed &amp;&amp; Connect_Lights_Controller.f_time_left &gt; 0)
+    Reflector_rotate(id, true);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -171,6 +117,8 @@ draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -191,7 +139,9 @@ draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, image_angle, c_white, 1);
 draw_set_color(c_lime);
 
 if(coords_dir_laser != noone)
-    draw_line(x, y, f_hit_x, f_hit_y);
+{
+    draw_line_width(x, y, f_hit_x, f_hit_y, 2);
+}
 </string>
           </argument>
         </arguments>
