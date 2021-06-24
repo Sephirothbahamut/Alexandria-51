@@ -1,4 +1,4 @@
-//Cables_are_connected_right(i_first_image,i_first_angle,i_second_image,i_second_angle);
+//cc_Cables_are_connected_right(i_first_image,i_first_angle,i_second_image,i_second_angle);
 var i_first_image = argument0;
 var i_first_angle = angle_to_dir4(argument1);
 var i_second_image = argument2;

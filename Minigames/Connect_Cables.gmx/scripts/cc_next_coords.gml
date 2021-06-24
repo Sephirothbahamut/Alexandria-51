@@ -1,4 +1,4 @@
-/// next_coords(grid_b, i_width, i_height, coords_start);
+/// cc_next_coords(grid_b, i_width, i_height, coords_start);
 var grid_b = argument0; var i_width = argument1; var i_height = argument2;
 var coords_start = argument3;
 
@@ -26,7 +26,7 @@ while(ds_list_size(list_dir) > 0)
     if(valid_index(coords_to_check[X], coords_to_check[Y], i_width, i_height) && 
                     grid_b[# coords_to_check[X], coords_to_check[Y]] == false)
     {
-        var arr_coord_path = next_coords(grid_b, i_width, i_height, coords_to_check);
+        var arr_coord_path = cc_next_coords(grid_b, i_width, i_height, coords_to_check);
         
         if(arr_coord_path != noone)
         {

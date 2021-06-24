@@ -1,14 +1,14 @@
-/// level_create(i_grid_w, i_grid_h, i_n_cables)
+/// cc_level_create(i_grid_w, i_grid_h, i_n_cables)
 var i_grid_w = argument0; var i_grid_h = argument1;
 var i_n_cables = argument2;
 
 var level_data = array_create(3);
 
 // genera matrice di cables (width, height)
-var grid_tile = grid_create(i_grid_w, i_grid_h, i_n_cables);
+var grid_tile = cc_grid_create(i_grid_w, i_grid_h, i_n_cables);
 
 // genera percorso
-var arr_coords_path = array_flip(path_create(i_grid_w, i_grid_h));
+var arr_coords_path = array_flip(cc_path_create(i_grid_w, i_grid_h));
 
 //sovrascrive i cavi per farli corrispondere al percorso
 var coords_prev_path_elem = arr_coords_path[0];

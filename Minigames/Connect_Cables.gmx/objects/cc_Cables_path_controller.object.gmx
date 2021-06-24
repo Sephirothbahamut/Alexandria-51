@@ -25,18 +25,56 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Constants
+
+// Max time available for puzzle
+i_MAX_TIME = 60;
+
+// Alarms
+i_TIMER = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Init
 
-s_cmd = "";
-b_visible = false;
-map_s_commands = ds_map_create();
+randomize();
 
-map_s_commands[? "win"] = win;
-map_s_commands[? "lose"] = lose;
-map_s_commands[? "no_time"] = no_time;
-map_s_commands[? "reset"] = reset;
-map_s_commands[? "restart"] = restart;
-map_s_commands[? "show"] = show;
+grid_max_w = 10;
+grid_max_h = 7;
+
+// Level setup
+var level_data = cc_level_create(grid_max_w, grid_max_h, 2);
+
+// Level data unpacking
+grid_tile           =     level_data[0];
+coords_start_light  =     level_data[1];
+coords_end_light    =     level_data[2];
+
+b_passed = false;
+b_failed = false;
+f_time_elapsed = 0;
+f_time_left = i_MAX_TIME;
+alarm[i_TIMER] = i_MAX_TIME * room_speed;
+
+//resetting the lights
+cc_grid_reset_lights();
 </string>
           </argument>
         </arguments>
@@ -59,8 +97,38 @@ map_s_commands[? "show"] = show;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Destroy
-ds_map_destroy(map_s_commands);
+            <string>/// Destroy DS stuff
+
+ds_grid_destroy(grid_tile);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Time ended
+
+if(!b_passed)
+{
+    b_failed = true;
+    cc_minigame_end(false);
+}
 </string>
           </argument>
         </arguments>
@@ -83,13 +151,11 @@ ds_map_destroy(map_s_commands);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Gather input 
-if(b_visible)
-{
-    s_cmd = keyboard_string;
-}
-    
-
+            <string>/// Update timer
+f_time_left = alarm[i_TIMER] / room_speed;
+f_time_elapsed = i_MAX_TIME - f_time_left;
+if(f_time_left &lt; 0)     
+    f_time_left = 0;
 </string>
           </argument>
         </arguments>
@@ -112,75 +178,40 @@ if(b_visible)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw console
-if(b_visible)
-{
-    draw_set_alpha(0.5);
-    
-    draw_set_valign(fa_top);
-    draw_set_halign(fa_left);
-    draw_set_colour(c_white);
-    draw_rectangle(0, 0, room_width, room_height/8, 1);
-    
-    draw_text(5, 5, string(s_cmd)); 
-}
-else
-{
-    draw_set_alpha(1);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Toggle console
-b_visible = !b_visible
-keyboard_string = "";
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Call cheat
-var cheat = map_s_commands[? s_cmd];
-if(!is_undefined(cheat))
-    script_execute(cheat);
+            <string>/// Draw timer
 
-keyboard_string = "";
+draw_set_font(fnt_Arial20);
+draw_set_color(c_black);
+
+draw_text(64, 64, string(f_time_left)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Start and End arrows
+draw_set_valign(fa_middle);
+draw_set_halign(fa_center);
+draw_set_color(c_black);
+var pstart = grid_tile[# coords_start_light[X], coords_start_light[Y]];
+var pend = grid_tile[# coords_end_light[X], coords_end_light[Y]];
+draw_arrow(pstart.x-sprite_get_width(spr_cc_Cables),pstart.y,pstart.x-sprite_get_width(spr_cc_Cables)/2,pstart.y, 8 );
+draw_arrow(pend.x+sprite_get_width(spr_cc_Cables)/2,pend.y,pend.x+sprite_get_width(spr_cc_Cables),pend.y, 8 );
 </string>
           </argument>
         </arguments>
