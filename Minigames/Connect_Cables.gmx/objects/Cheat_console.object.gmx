@@ -35,6 +35,7 @@ map_s_commands[? "win"] = win;
 map_s_commands[? "lose"] = lose;
 map_s_commands[? "no_time"] = no_time;
 map_s_commands[? "reset"] = reset;
+map_s_commands[? "restart"] = restart;
 map_s_commands[? "show"] = show;
 </string>
           </argument>

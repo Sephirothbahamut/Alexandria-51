@@ -1,5 +1,5 @@
 /// lose()
-with(Tiles_path_controller)
+with(Cables_path_controller)
 {
     b_passed = false;
     b_failed = true;
