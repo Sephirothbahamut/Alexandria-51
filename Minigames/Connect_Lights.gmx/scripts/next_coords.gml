@@ -5,7 +5,7 @@ var i_length = argument4;
 var dir4_last = argument5;
 
 // caso base length
-if(i_length == 0)
+if(i_length == 1)
 {
     var arr_coord_path = array_create(1);
     arr_coord_path[0] = coords_start;
@@ -42,7 +42,7 @@ while(ds_list_size(list_dir) > 0)
     var coords_delta = dir4_to_axis(dir4);
     var coords_new = coords_sum(coords_start, coords_delta);
     
-    if(valid_next(grid_tile, i_grid_w, i_grid_h, coords_new))
+    if(check_path_coords(grid_tile, i_grid_w, i_grid_h, coords_new) == coords_safety.safe)
     {
         var arr_coord_path = next_coords(grid_tile, i_grid_w, i_grid_h, coords_new, i_length - 1, dir4);
         

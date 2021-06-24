@@ -59,7 +59,7 @@ i_grid_h = 8;
 f_orig_x = (room_width / 2) - ((i_grid_w * sprite_get_width(spr_Wall)) / 2);
 f_orig_y = (room_height / 2) - ((i_grid_h * sprite_get_height(spr_Wall)) / 2);
 
-grid_tile = grid_create(i_grid_w, i_grid_h, 5);
+grid_tile = grid_create(i_grid_w, i_grid_h, 5, 0.3, 8, 13);
 
 b_passed = false;
 f_time_elapsed = 0;
