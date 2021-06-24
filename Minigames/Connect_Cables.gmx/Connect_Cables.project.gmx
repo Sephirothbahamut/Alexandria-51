@@ -49,6 +49,9 @@
       <script>scripts\path_create.gml</script>
       <script>scripts\next_coords.gml</script>
       <script>scripts\grid_reset_lights.gml</script>
+      <script>scripts\check_winning_condition.gml</script>
+      <script>scripts\valid_entrance.gml</script>
+      <script>scripts\valid_exit.gml</script>
     </scripts>
     <scripts name="coords">
       <script>scripts\coords_create.gml</script>

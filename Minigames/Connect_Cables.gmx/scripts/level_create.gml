@@ -12,11 +12,14 @@ var arr_coords_path = array_flip(path_create(i_grid_w, i_grid_h));
 
 //sovrascrive i cavi per farli corrispondere al percorso
 var coords_prev_path_elem = arr_coords_path[0];
-var coords_path_elem = 0;
+var coords_path_elem = arr_coords_path[1];
 var coords_next_path_elem = 0;
 
 //la prima immagine del path deve avere il numero 0
-grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].image_index = 0;
+if(coords_prev_path_elem[X] == coords_path_elem[X])
+    grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].image_index = 0;
+else
+    grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].image_index = 1;
 grid_tile[# coords_prev_path_elem[X], coords_prev_path_elem[Y]].i_sol = 0;
 
 // cambia il simbolo delle tile del percorso secondo pattern
@@ -35,7 +38,10 @@ for(var i = 1; i < array_length_1d(arr_coords_path)-1; i++)
     
 }
 //la prima immagine del path deve avere come numero la lunghezza del path
-grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].image_index = 0;
+if(coords_next_path_elem[X] == coords_path_elem[X])
+    grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].image_index = 0;
+else
+    grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].image_index = 1;
 grid_tile[# coords_next_path_elem[X], coords_next_path_elem[Y]].i_sol = array_length_1d(arr_coords_path)-1;
 
 // impacchetta tutto

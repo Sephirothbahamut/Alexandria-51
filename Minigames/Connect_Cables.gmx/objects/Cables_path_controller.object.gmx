@@ -160,34 +160,6 @@ if(f_time_left &lt; 0)
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Check winning conditions
-if(grid_tile[# coords_end_light[X], coords_end_light[Y]].b_is_enlighted)
-{
-    b_passed = true;
-    b_failed = false;
-    minigame_end(true);
-
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -238,8 +210,8 @@ draw_set_halign(fa_center);
 draw_set_color(c_black);
 var pstart = grid_tile[# coords_start_light[X], coords_start_light[Y]];
 var pend = grid_tile[# coords_end_light[X], coords_end_light[Y]];
-draw_arrow(pstart.x-48,pstart.y,pstart.x-24,pstart.y, 8 );
-draw_arrow(pend.x+24,pend.y,pend.x+48,pend.y, 8 );
+draw_arrow(pstart.x-sprite_get_width(spr_Cables),pstart.y,pstart.x-sprite_get_width(spr_Cables)/2,pstart.y, 8 );
+draw_arrow(pend.x+sprite_get_width(spr_Cables)/2,pend.y,pend.x+sprite_get_width(spr_Cables),pend.y, 8 );
 </string>
           </argument>
         </arguments>

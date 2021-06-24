@@ -1,4 +1,4 @@
-/// coords_diff(coords_1, coords_2)
+/// coords_align(coords_1, coords_2)
 var coords_1 = argument0;
 var coords_2 = argument1;
 
