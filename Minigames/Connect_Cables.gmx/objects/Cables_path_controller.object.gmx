@@ -153,7 +153,7 @@ if(!b_passed)
             <kind>1</kind>
             <string>/// Update timer
 f_time_left = alarm[i_TIMER] / room_speed;
-
+f_time_elapsed = i_MAX_TIME - f_time_left;
 if(f_time_left &lt; 0)     
     f_time_left = 0;
 </string>
