@@ -4,12 +4,17 @@ var i_cable_second_x = argument1;
 var i_cable_second_y = argument2;
 var dir4_direction = argument3;
 
+var ccc = cc_Cables_path_controller;
+var i_max_w = ccc.grid_max_w;
+var i_max_h = ccc.grid_max_h;
+var grid = ccc.grid_tile;
+
 var coords_cable = coords_create(i_cable_second_x,i_cable_second_y);
 //I need to check If I have a valid index
-if(coords_cable[X] >= 0 and coords_cable[X] < cc_Cables_path_controller.grid_max_w)
-    if(coords_cable[Y] >= 0 and coords_cable[Y] < cc_Cables_path_controller.grid_max_h){
+if(coords_cable[X] >= 0 and coords_cable[X] < i_max_w)
+    if(coords_cable[Y] >= 0 and coords_cable[Y] < i_max_h){
         //Here I'm sure that the second cable exists
-        var cable_second = cc_Cables_path_controller.grid_tile[#coords_cable[X],coords_cable[Y]]; 
+        var cable_second = grid[#coords_cable[X],coords_cable[Y]]; 
         //If they are connected I enlight them
         if(cc_Cables_are_connected(cable_first,cable_second,dir4_direction)){
             var b_some_change = cc_Cable_set_enlight_status(cable_second,true);

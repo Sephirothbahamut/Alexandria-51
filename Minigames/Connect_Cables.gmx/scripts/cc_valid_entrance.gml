@@ -1,5 +1,9 @@
 /// cc_valid_entrance()
-var first_cable = cc_Cables_path_controller.grid_tile[# cc_Cables_path_controller.coords_start_light[X], cc_Cables_path_controller.coords_start_light[Y]];
+var ccc = cc_Cables_path_controller;
+var grid = ccc.grid_tile;
+var coords_s =  ccc.coords_start_light;
+
+var first_cable = grid[# coords_s[X], coords_s[Y]];
 if(first_cable.image_index==0)
 {
     if(first_cable.image_angle == dir4_to_angle(dir4_UP) or first_cable.image_angle == dir4_to_angle(dir4_LL))

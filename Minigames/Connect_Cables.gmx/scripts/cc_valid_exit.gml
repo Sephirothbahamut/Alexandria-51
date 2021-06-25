@@ -1,5 +1,10 @@
 /// valid_exit()
-var last_cable = cc_Cables_path_controller.grid_tile[# cc_Cables_path_controller.coords_end_light[X], cc_Cables_path_controller.coords_end_light[Y]];
+var ccc = cc_Cables_path_controller;
+var coords_e = ccc.coords_end_light;
+var grid = ccc.grid_tile;
+
+
+var last_cable = grid[# coords_e[X], coords_e[Y]];
 if(last_cable.image_index==0)
 {
     if(last_cable.image_angle == dir4_to_angle(dir4_RR) or last_cable.image_angle == dir4_to_angle(dir4_DW))

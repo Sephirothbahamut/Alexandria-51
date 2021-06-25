@@ -205,11 +205,12 @@ draw_text(64, 64, string(f_time_left));
           <argument>
             <kind>1</kind>
             <string>/// Draw Start and End arrows
+var pstart = grid_tile[# coords_start_light[X], coords_start_light[Y]];
+var pend = grid_tile[# coords_end_light[X], coords_end_light[Y]];
+
 draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 draw_set_color(c_black);
-var pstart = grid_tile[# coords_start_light[X], coords_start_light[Y]];
-var pend = grid_tile[# coords_end_light[X], coords_end_light[Y]];
 draw_arrow(pstart.x-sprite_get_width(spr_cc_Cables),pstart.y,pstart.x-sprite_get_width(spr_cc_Cables)/2,pstart.y, 8 );
 draw_arrow(pend.x+sprite_get_width(spr_cc_Cables)/2,pend.y,pend.x+sprite_get_width(spr_cc_Cables),pend.y, 8 );
 </string>

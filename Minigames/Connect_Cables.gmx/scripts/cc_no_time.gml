@@ -1,5 +1,6 @@
 /// no_time
-with(cc_Cables_path_controller)
+var ccc = cc_Cables_path_controller;
+with(ccc)
 {
     alarm[i_TIMER] = 1;
 }

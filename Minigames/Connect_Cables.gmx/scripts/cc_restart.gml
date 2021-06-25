@@ -1,6 +1,6 @@
 /// restart()
-
-with(cc_Cables_path_controller)
+var ccc = cc_Cables_path_controller;
+with(ccc)
 {
     // Reset game variables
     b_passed = false;
