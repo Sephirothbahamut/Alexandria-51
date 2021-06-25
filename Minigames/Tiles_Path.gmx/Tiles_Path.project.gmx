@@ -34,7 +34,6 @@
       <scripts name="Tile">
         <script>scripts\Tile_create.gml</script>
         <script>scripts\Tile_set.gml</script>
-        <script>scripts\Tile_get.gml</script>
       </scripts>
     </scripts>
     <scripts name="arrays">

@@ -65,8 +65,9 @@ f_time_elapsed = 0;
 f_time_left = i_MAX_TIME;
 alarm[i_TIMER] = i_MAX_TIME * room_speed;
 
-create_ring(true);
+b_square = random(1) &gt; 0.5;
 
+create_ring(b_square);
 </string>
           </argument>
         </arguments>
@@ -93,6 +94,7 @@ with(Cheat_console)
 {
     map_s_commands[? "win"] = win;
     map_s_commands[? "lose"] = lose;
+    map_s_commands[? "restart"] = restart;
     map_s_commands[? "reset"] = reset;
 }
 </string>

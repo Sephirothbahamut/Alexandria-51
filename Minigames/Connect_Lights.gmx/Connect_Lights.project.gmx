@@ -50,7 +50,6 @@
       <script>scripts\create_walls.gml</script>
       <script>scripts\object_spawner.gml</script>
       <script>scripts\grid_set_tile.gml</script>
-      <script>scripts\check_path_coords.gml</script>
       <script>scripts\puzzle_create.gml</script>
       <scripts name="path">
         <script>scripts\path_create.gml</script>
@@ -60,6 +59,7 @@
         <script>scripts\_path_is_turning_v.gml</script>
         <script>scripts\_path_is_turning_h.gml</script>
         <script>scripts\path_decorate.gml</script>
+        <script>scripts\check_path_coords.gml</script>
       </scripts>
       <scripts name="laser">
         <script>scripts\eval_laser.gml</script>

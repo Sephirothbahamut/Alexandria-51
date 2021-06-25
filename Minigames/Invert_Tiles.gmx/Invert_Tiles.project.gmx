@@ -34,6 +34,7 @@
     <scripts name="cheats">
       <script>scripts\win.gml</script>
       <script>scripts\lose.gml</script>
+      <script>scripts\restart.gml</script>
       <script>scripts\reset.gml</script>
     </scripts>
     <scripts name="level">
