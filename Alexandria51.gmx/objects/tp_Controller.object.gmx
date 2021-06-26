@@ -220,7 +220,7 @@ if(!b_passed)
 var i_h = keyboard_check(ord('D'))-keyboard_check(ord('A'));
 var i_v = keyboard_check(ord('S'))-keyboard_check(ord('W'));
 
-if(Cheat_console.b_visible)
+if(instance_exists(Cheat_console) and Cheat_console.b_visible)
 {
     i_h = 0;
     i_v = 0;

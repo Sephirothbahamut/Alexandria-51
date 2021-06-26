@@ -93,7 +93,6 @@ it_create_ring(b_square);
           <argument>
             <kind>1</kind>
             <string>/// Load cheats
-
 with(Cheat_console)
 {
     map_s_commands[? "win"] = it_win;
