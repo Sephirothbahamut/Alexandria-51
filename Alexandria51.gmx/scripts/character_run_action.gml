@@ -32,6 +32,7 @@ with(character)
             break;
         case action_t.push: 
             scrolling_text(client_owner.s_name + " is pushing towards " + string(data) + ".");  
+            character_action_push(character, data);
             alarm[0] = 3 * room_speed;
             break;
         }

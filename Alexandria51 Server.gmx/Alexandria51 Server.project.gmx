@@ -72,6 +72,7 @@
           <script>scripts\character_run_action.gml</script>
           <scripts name="actions">
             <script>scripts\character_action_move.gml</script>
+            <script>scripts\character_action_push.gml</script>
           </scripts>
         </scripts>
       </scripts>

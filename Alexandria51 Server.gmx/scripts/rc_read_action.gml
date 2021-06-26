@@ -7,7 +7,7 @@ var buffer    = argument2;
 var action = buffer_read(buffer, buffer_u8);
 var data   = noone;
 
-if(action >= action_t.move and action <= action_t.look)
+if(action >= action_t.move and action <= action_t.push)
     {
     data = buffer_read(buffer, buffer_u8);
     }

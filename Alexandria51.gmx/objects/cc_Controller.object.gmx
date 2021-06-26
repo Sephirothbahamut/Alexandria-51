@@ -235,7 +235,7 @@ if(f_time_left &lt; 0)
             <kind>1</kind>
             <string>/// Draw timer
 
-draw_set_font(fnt_Arial20);
+draw_set_font(fnt_arial20);
 draw_set_color(c_black);
 
 draw_text(64, 64, string(f_time_left)); 

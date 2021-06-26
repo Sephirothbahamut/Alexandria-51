@@ -98,6 +98,7 @@
           <scripts name="actions">
             <script>scripts\character_action_move.gml</script>
             <script>scripts\character_action_look.gml</script>
+            <script>scripts\character_action_push.gml</script>
           </scripts>
         </scripts>
       </scripts>
@@ -274,7 +275,7 @@
     <font>fonts\fnt_arial24</font>
     <font>fonts\fnt_arial12</font>
     <font>fonts\fnt_monospace</font>
-    <font>fonts\fnt_Arial20</font>
+    <font>fonts\fnt_arial20</font>
   </fonts>
   <objects name="objects">
     <objects name="Main_game">
@@ -319,9 +320,9 @@
     <room>rooms\r_start</room>
     <room>rooms\r_main</room>
     <rooms name="Minigames">
+      <room>rooms\r_it_Main</room>
       <room>rooms\r_tp_Main</room>
       <room>rooms\r_cl_Main</room>
-      <room>rooms\r_it_Main</room>
       <room>rooms\r_cc_Main</room>
     </rooms>
   </rooms>
