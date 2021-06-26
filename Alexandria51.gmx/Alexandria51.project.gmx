@@ -319,10 +319,10 @@
     <room>rooms\r_start</room>
     <room>rooms\r_main</room>
     <rooms name="Minigames">
-      <room>rooms\r_tp_Main</room>
       <room>rooms\r_cl_Main</room>
       <room>rooms\r_it_Main</room>
       <room>rooms\r_cc_Main</room>
+      <room>rooms\r_tp_Main</room>
     </rooms>
   </rooms>
   <constants number="23">
