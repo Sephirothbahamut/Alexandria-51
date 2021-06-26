@@ -12,10 +12,10 @@
   <showcolour>-1</showcolour>
   <code>instance_create(0,0, Cheat_console);
 
-//room_goto(r_it_Main);
+room_goto(r_it_Main);
 //room_goto(r_tp_Main);
 //room_goto(r_cl_Main);
-room_goto(r_cc_Main);</code>
+//room_goto(r_cc_Main);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
