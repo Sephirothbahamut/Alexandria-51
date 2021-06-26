@@ -17,6 +17,28 @@
     <sprites name="UI">
       <sprite>sprites\spr_Button</sprite>
     </sprites>
+    <sprites name="Minigames">
+      <sprites name="Invert_Tiles">
+        <sprite>sprites\spr_it_Tile</sprite>
+      </sprites>
+      <sprites name="Tiles_Path">
+        <sprite>sprites\spr_tp_Arrow</sprite>
+        <sprite>sprites\spr_tp_Char_down</sprite>
+        <sprite>sprites\spr_tp_Char_front</sprite>
+        <sprite>sprites\spr_tp_Char_happy</sprite>
+        <sprite>sprites\spr_tp_Tile</sprite>
+      </sprites>
+      <sprites name="Connect_Lights">
+        <sprite>sprites\spr_cl_Emitter</sprite>
+        <sprite>sprites\spr_cl_Floor</sprite>
+        <sprite>sprites\spr_cl_Reflector</sprite>
+        <sprite>sprites\spr_cl_Sensor</sprite>
+        <sprite>sprites\spr_cl_Wall</sprite>
+      </sprites>
+      <sprites name="Connect_Cables">
+        <sprite>sprites\spr_cc_Cables</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -40,6 +62,7 @@
       <script>scripts\coords_sum.gml</script>
       <script>scripts\coords_to_string.gml</script>
       <script>scripts\coords_equal.gml</script>
+      <script>scripts\coords_align.gml</script>
     </scripts>
     <scripts name="Methods">
       <scripts name="Main_game">
@@ -123,12 +146,135 @@
       <script>scripts\_valid_index_2.gml</script>
       <script>scripts\array_fill.gml</script>
       <script>scripts\valid_index.gml</script>
+      <script>scripts\array_last.gml</script>
+      <script>scripts\array_flip.gml</script>
+      <script>scripts\array_print.gml</script>
+    </scripts>
+    <scripts name="Minigames">
+      <scripts name="Invert_Tiles">
+        <scripts name="methods">
+          <scripts name="it_Tile">
+            <script>scripts\it_Tile_add_adj.gml</script>
+            <script>scripts\it_Tile_create.gml</script>
+            <script>scripts\it_Tile_get.gml</script>
+            <script>scripts\it_Tile_set.gml</script>
+            <script>scripts\it_Tile_toggle.gml</script>
+          </scripts>
+          <scripts name="it_Controller">
+            <script>scripts\it_Controller_check.gml</script>
+          </scripts>
+        </scripts>
+        <scripts name="level">
+          <script>scripts\it_create_ring.gml</script>
+        </scripts>
+        <scripts name="cheats">
+          <script>scripts\it_lose.gml</script>
+          <script>scripts\it_reset.gml</script>
+          <script>scripts\it_restart.gml</script>
+          <script>scripts\it_win.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="Tiles_Path">
+        <scripts name="methods">
+          <script>scripts\tp_Tile_create.gml</script>
+          <script>scripts\tp_Tile_set.gml</script>
+        </scripts>
+        <scripts name="level">
+          <script>scripts\tp_grid_create.gml</script>
+          <script>scripts\tp_level_create.gml</script>
+          <script>scripts\tp_next_coords.gml</script>
+          <script>scripts\tp_path_create.gml</script>
+          <script>scripts\tp_pattern_create.gml</script>
+        </scripts>
+        <scripts name="cheats">
+          <script>scripts\tp_lose.gml</script>
+          <script>scripts\tp_no_time.gml</script>
+          <script>scripts\tp_reset.gml</script>
+          <script>scripts\tp_restart.gml</script>
+          <script>scripts\tp_show.gml</script>
+          <script>scripts\tp_win.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="Connect_Lights">
+        <scripts name="methods">
+          <scripts name="cl_Reflector">
+            <script>scripts\cl_Reflector_calc_reflection.gml</script>
+            <script>scripts\cl_Reflector_create.gml</script>
+            <script>scripts\cl_Reflector_rotate.gml</script>
+          </scripts>
+          <scripts name="cl_Sensor">
+            <script>scripts\cl_Sensor_create.gml</script>
+            <script>scripts\cl_Sensor_hit.gml</script>
+          </scripts>
+          <scripts name="cl_Controller">
+            <script>scripts\cl_Controller_check.gml</script>
+            <script>scripts\cl_Controller_calculate_lasers.gml</script>
+          </scripts>
+          <script>scripts\cl_Floor_create.gml</script>
+          <script>scripts\cl_Wall_create.gml</script>
+          <script>scripts\cl_Emitter_create.gml</script>
+        </scripts>
+        <scripts name="level">
+          <script>scripts\cl_eval_laser.gml</script>
+          <script>scripts\cl_puzzle_create.gml</script>
+          <script>scripts\cl_create_walls.gml</script>
+          <script>scripts\cl_grid_set_tile.gml</script>
+          <script>scripts\cl_grid_create.gml</script>
+          <scripts name="path">
+            <script>scripts\cl_next_coords.gml</script>
+            <script>scripts\cl_check_path_coords.gml</script>
+            <script>scripts\cl_path_create.gml</script>
+            <script>scripts\cl_path_decorate.gml</script>
+            <script>scripts\cl_path_is_turning.gml</script>
+            <script>scripts\_cl_path_is_turning_v.gml</script>
+            <script>scripts\_cl_path_is_turning_h.gml</script>
+          </scripts>
+        </scripts>
+        <scripts name="cheats">
+          <script>scripts\cl_no_time.gml</script>
+          <script>scripts\cl_reset.gml</script>
+          <script>scripts\cl_restart.gml</script>
+          <script>scripts\cl_lose.gml</script>
+          <script>scripts\cl_win.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="Connect_Cables">
+        <scripts name="methods">
+          <script>scripts\cc_Cable_enlight_single_neighboor.gml</script>
+          <script>scripts\cc_Cable_enlight_neighboors.gml</script>
+          <script>scripts\cc_Cable_set_enlight_status.gml</script>
+          <script>scripts\cc_Cables_are_connected_right.gml</script>
+          <script>scripts\cc_Cables_are_connected.gml</script>
+          <script>scripts\cc_Cable_create.gml</script>
+          <script>scripts\cc_Cable_set.gml</script>
+        </scripts>
+        <scripts name="level">
+          <script>scripts\cc_valid_entrance.gml</script>
+          <script>scripts\cc_valid_exit.gml</script>
+          <script>scripts\cc_check_winning_condition.gml</script>
+          <script>scripts\cc_grid_reset_lights.gml</script>
+          <script>scripts\cc_next_coords.gml</script>
+          <script>scripts\cc_path_create.gml</script>
+          <script>scripts\cc_grid_create.gml</script>
+          <script>scripts\cc_level_create.gml</script>
+        </scripts>
+        <scripts name="cheats">
+          <script>scripts\cc_no_time.gml</script>
+          <script>scripts\cc_reset.gml</script>
+          <script>scripts\cc_show.gml</script>
+          <script>scripts\cc_lose.gml</script>
+          <script>scripts\cc_restart.gml</script>
+          <script>scripts\cc_win.gml</script>
+        </scripts>
+      </scripts>
+      <script>scripts\minigame_end.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial24</font>
     <font>fonts\fnt_arial12</font>
     <font>fonts\fnt_monospace</font>
+    <font>fonts\fnt_Arial20</font>
   </fonts>
   <objects name="objects">
     <objects name="Main_game">
@@ -145,10 +291,39 @@
     <objects name="UI">
       <object>objects\Button</object>
     </objects>
+    <objects name="Minigames">
+      <objects name="Invert_Tiles">
+        <object>objects\it_Controller</object>
+        <object>objects\it_Tile</object>
+      </objects>
+      <objects name="Tiles_Path">
+        <object>objects\tp_Controller</object>
+        <object>objects\tp_Tile</object>
+      </objects>
+      <objects name="Connect_Lights">
+        <object>objects\cl_Controller</object>
+        <object>objects\cl_Emitter</object>
+        <object>objects\cl_Floor</object>
+        <object>objects\cl_Reflector</object>
+        <object>objects\cl_Sensor</object>
+        <object>objects\cl_Wall</object>
+      </objects>
+      <objects name="Connect_Cables">
+        <object>objects\cc_Cable</object>
+        <object>objects\cc_Controller</object>
+      </objects>
+      <object>objects\Cheat_console</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_start</room>
     <room>rooms\r_main</room>
+    <rooms name="Minigames">
+      <room>rooms\r_tp_Main</room>
+      <room>rooms\r_cl_Main</room>
+      <room>rooms\r_it_Main</room>
+      <room>rooms\r_cc_Main</room>
+    </rooms>
   </rooms>
   <constants number="23">
     <constant name="VERIFY_ENABLED">1</constant>
