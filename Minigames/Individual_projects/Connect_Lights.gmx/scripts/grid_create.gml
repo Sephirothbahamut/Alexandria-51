@@ -12,7 +12,6 @@ var f_orig_x = (room_width / 2) - ((i_grid_w * sprite_get_width(spr_Wall)) / 2);
 var f_orig_y = (room_height / 2) - ((i_grid_h * sprite_get_height(spr_Wall)) / 2);
 
 // Create random walls
-randomize();
 create_walls(grid_tile, f_wall_density);
 
 // Create random paths

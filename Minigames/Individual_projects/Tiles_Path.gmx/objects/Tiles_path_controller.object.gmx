@@ -55,6 +55,7 @@ i_TIMER = 0;
             <string>/// Init
 
 randomize();
+i_random_seed = random_get_seed();
 
 // Level setup
 var level_data = level_create(10, 7, 4, 4);
@@ -387,6 +388,28 @@ draw_set_font(fnt_Arial20);
 draw_set_color(c_black);
 
 draw_text(64, 64, string(f_time_left)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw seed
+draw_text(room_width-64*3, room_height-64, string(i_random_seed));
 </string>
           </argument>
         </arguments>

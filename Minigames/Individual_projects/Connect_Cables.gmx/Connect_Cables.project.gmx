@@ -76,7 +76,7 @@
   <objects name="objects">
     <object>objects\cc_Cable</object>
     <object>objects\cc_Cables_path_controller</object>
-    <object>objects\cc_Cheat_console</object>
+    <object>objects\Cheat_console</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_cc_Main</room>
