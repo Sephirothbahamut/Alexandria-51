@@ -23,6 +23,6 @@ if(b_all_done)
     {
     with(Character) { b_done = false; }
     show_debug_message("All clients have finished running actions");
-    with(Rooms_controller) { event_user(0); }
+    with(Rooms_controller) { event_user(1); }
     }
 

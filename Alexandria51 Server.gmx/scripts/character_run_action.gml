@@ -16,7 +16,7 @@ with(character)
             scrolling_text(client_owner.s_name + " did nothing."); 
             break;
         case action_t.talk: 
-            scrolling_text(client_owner.s_name + " has spoken.");
+            scrolling_text(client_owner.s_name + " said: " + data);  
             break;
         case action_t.move: 
             scrolling_text(client_owner.s_name + " is  moving to "      + string(data) + ".");  

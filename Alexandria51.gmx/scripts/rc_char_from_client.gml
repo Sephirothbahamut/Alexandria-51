@@ -4,7 +4,7 @@ var u_pid = verify(argument0, var_t.uint_t);
 
 for(var u = 0; u < ds_list_size(Rooms_controller.characters_list); u++)
     {
-    var character = Rooms_controller.characters_list[| u];
+    var character = rc_character_from_pid(u);
     if(character.client_owner.u_pid == u_pid) { return character; }
     }
 return noone;

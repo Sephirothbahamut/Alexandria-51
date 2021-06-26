@@ -13,7 +13,7 @@ if(action >= action_t.move and action <= action_t.push)
     }
 else if(action == action_t.talk)
     {
-    //TODO read string data
+    data = buffer_read(buffer, buffer_string);
     }
 //else { read no data }
 

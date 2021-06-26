@@ -13,9 +13,16 @@
       <sprite>sprites\spr_Room_exit</sprite>
       <sprite>sprites\spr_Room_mechanical</sprite>
       <sprite>sprites\spr_Character</sprite>
+      <sprite>sprites\spr_Character_dead</sprite>
+      <sprite>sprites\spr_Room_medical</sprite>
+      <sprite>sprites\spr_Room_death</sprite>
+      <sprite>sprites\spr_Room_soundproof</sprite>
+      <sprite>sprites\spr_Room_mine_off</sprite>
+      <sprite>sprites\spr_Room_mine_on</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_Button</sprite>
+      <sprite>sprites\spr_Textbox</sprite>
     </sprites>
     <sprites name="Minigames">
       <sprites name="Invert_Tiles">
@@ -56,6 +63,7 @@
       <script>scripts\dir8_to_axis.gml</script>
       <script>scripts\snap_angle_4.gml</script>
       <script>scripts\snap_angle_8.gml</script>
+      <script>scripts\dir4_to_string.gml</script>
     </scripts>
     <scripts name="coords">
       <script>scripts\coords_create.gml</script>
@@ -68,28 +76,43 @@
       <scripts name="Main_game">
         <scripts name="Rooms_controller">
           <script>scripts\rc_create.gml</script>
-          <scripts name="actions">
-            <script>scripts\rc_action_run_next.gml</script>
-            <script>scripts\rc_buffer_write_action.gml</script>
-          </scripts>
           <script>scripts\rc_char_from_client.gml</script>
           <script>scripts\rc_server_waits_actions.gml</script>
+          <script>scripts\rc_receive_actions.gml</script>
+          <script>scripts\rc_read_actions.gml</script>
           <script>scripts\rc_set_actions.gml</script>
           <scripts name="buttons">
             <script>scripts\rc_create_action_selection_buttons.gml</script>
             <script>scripts\rc_chose_action.gml</script>
             <script>scripts\rc_chose_action_dir.gml</script>
+            <script>scripts\rc_chose_action_string.gml</script>
             <script>scripts\rc_set_data1.gml</script>
             <script>scripts\rc_set_data2.gml</script>
             <script>scripts\rc_send_actions.gml</script>
             <script>scripts\rc_spawn_dir_buttons.gml</script>
-            <script>scripts\rc_receive_actions.gml</script>
-            <script>scripts\rc_read_actions.gml</script>
           </scripts>
+          <scripts name="actions">
+            <script>scripts\rc_action_run_next.gml</script>
+            <script>scripts\rc_buffer_write_action.gml</script>
+          </scripts>
+          <scripts name="minigames phse">
+            <script>scripts\____minigames_enum.gml</script>
+            <script>scripts\rc_minigame_start.gml</script>
+            <script>scripts\rc_minigame_finished.gml</script>
+          </scripts>
+          <scripts name="effects">
+            <script>scripts\____effects_enum.gml</script>
+            <script>scripts\rc_set_effects.gml</script>
+            <script>scripts\rc_run_effects.gml</script>
+            <script>scripts\rc_update_flagged_rooms.gml</script>
+            <script>scripts\rc_injured_scrolling_text.gml</script>
+          </scripts>
+          <script>scripts\rc_character_from_pid.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
           <script>scripts\mroom_update_char_coords.gml</script>
+          <script>scripts\mroom_set_type.gml</script>
         </scripts>
         <scripts name="Character">
           <script>scripts\character_create.gml</script>
@@ -97,6 +120,7 @@
           <script>scripts\character_run_action.gml</script>
           <scripts name="actions">
             <script>scripts\character_action_move.gml</script>
+            <script>scripts\character_action_talk.gml</script>
             <script>scripts\character_action_look.gml</script>
             <script>scripts\character_action_push.gml</script>
           </scripts>
@@ -124,12 +148,16 @@
           <script>scripts\client_create.gml</script>
           <script>scripts\client_to_string.gml</script>
         </scripts>
+        <script>scripts\buffer_writeu8.gml</script>
+        <script>scripts\buffer_readu8.gml</script>
       </scripts>
       <scripts name="Scrolling_text">
         <script>scripts\scrolling_text.gml</script>
       </scripts>
       <scripts name="UI">
         <script>scripts\button_create.gml</script>
+        <script>scripts\textbox_create.gml</script>
+        <script>scripts\ui_set_focus.gml</script>
       </scripts>
     </scripts>
     <scripts name="verification">
@@ -291,6 +319,7 @@
     <object>objects\Scrolling_text_manager</object>
     <objects name="UI">
       <object>objects\Button</object>
+      <object>objects\Textbox</object>
     </objects>
     <objects name="Minigames">
       <objects name="Invert_Tiles">
@@ -322,12 +351,13 @@
     <rooms name="Minigames">
       <room>rooms\r_it_Main</room>
       <room>rooms\r_tp_Main</room>
-      <room>rooms\r_cl_Main</room>
       <room>rooms\r_cc_Main</room>
+      <room>rooms\r_cl_Main</room>
     </rooms>
   </rooms>
-  <constants number="23">
-    <constant name="VERIFY_ENABLED">1</constant>
+  <constants number="24">
+    <constant name="DEATH_IS_REAL">false</constant>
+    <constant name="VERIFY_ENABLED">true</constant>
     <constant name="dir4_RR">0</constant>
     <constant name="dir4_UP">1</constant>
     <constant name="dir4_LL">2</constant>

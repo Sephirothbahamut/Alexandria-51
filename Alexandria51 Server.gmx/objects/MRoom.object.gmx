@@ -33,6 +33,9 @@ u_grid_y = -1;
 room_type = room_type_t.r_empty
 
 characters_list = ds_list_create();
+
+//flag to do stuff if the event requires a change
+b_event_flag = false;
 </string>
           </argument>
         </arguments>

@@ -57,12 +57,17 @@ image_speed = 0;
 mroom_current = noone;
 client_owner = noone;
 
+//Variables to reset for each turn
 action_1 = action_t.pass;
 action_2 = action_t.pass;
 action_1_data = noone;
 action_2_data = noone;
+b_minigame_won = false;
 
+//Variables to reset multiple times in different phases of each turn
 b_done = false;
+
+u_hp = 2;
 </string>
           </argument>
         </arguments>
@@ -86,13 +91,24 @@ b_done = false;
           <argument>
             <kind>1</kind>
             <string>draw_set_alpha(1);
-draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, 0, c_white, 1);
+if(u_hp &gt; 0) { draw_sprite(spr_Character,      -1, x, y); }
+else         { draw_sprite(spr_Character_dead, -1, x, y); }
 
 draw_set_font(fnt_arial12);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 
+switch(u_hp)
+    {
+    case 0: draw_set_color(c_red);    break;
+    case 1: draw_set_color(c_yellow); break;
+    case 2: draw_set_color(c_white);  break;
+    }
+        
 draw_text(x + (sprite_get_width(sprite_index) / 2), y - 36, client_owner.s_name);
+
+if(u_hp &gt; 0) { draw_text(x + (sprite_get_width(spr_Character)      / 2), y - 36, client_owner.s_name); }
+else         { draw_text(x + (sprite_get_width(spr_Character_dead) / 2), y - 36, client_owner.s_name); }
 </string>
           </argument>
         </arguments>

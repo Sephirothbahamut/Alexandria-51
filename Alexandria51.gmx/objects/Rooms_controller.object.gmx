@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// Init
 
+
 u_width = 0;
 u_height = 0;
 
@@ -45,6 +46,10 @@ action_1 = action_t.COUNT;
 action_1_data = noone;
 action_2 = action_t.COUNT;
 action_2_data = noone;
+
+
+//Initialize global, is noone only on first round
+global.minigame_success = noone;
 </string>
           </argument>
         </arguments>
@@ -69,11 +74,13 @@ action_2_data = noone;
 
 enum room_type_t
     {
-    r_entrance, r_exit, r_empty, 
-    r_mechanical,
+    r_entrance, r_exit, r_empty, //Special
+    r_soundproof, //Miningameless
+    r_mechanical, r_medical, r_death, r_mine_on, r_mine_off, //Minigames
     COUNT
     };
-
+    
+    
 //Sprites
 array_spr = array_create(room_type_t.COUNT);
 array_spr = array_fill(array_spr, spr_Room_empty);
@@ -81,6 +88,13 @@ array_spr = array_fill(array_spr, spr_Room_empty);
 array_spr[room_type_t.r_entrance]   = spr_Room_entrance;
 array_spr[room_type_t.r_exit]       = spr_Room_exit;
 array_spr[room_type_t.r_mechanical] = spr_Room_mechanical;
+array_spr[room_type_t.r_medical]    = spr_Room_medical;
+array_spr[room_type_t.r_death]      = spr_Room_death;
+array_spr[room_type_t.r_soundproof] = spr_Room_soundproof;
+array_spr[room_type_t.r_mine_on]    = spr_Room_mine_on;
+array_spr[room_type_t.r_mine_off]   = spr_Room_mine_off;
+
+
 
 //Names
 array_str_name = array_create(room_type_t.COUNT);
@@ -90,16 +104,25 @@ array_str_name[room_type_t.r_entrance]   = "Entrance";
 
 array_str_name[room_type_t.r_exit]       = "Exit";
 array_str_name[room_type_t.r_mechanical] = "Mechanical";
+array_str_name[room_type_t.r_medical]    = "Medical";
+array_str_name[room_type_t.r_death]      = "Death";
+array_str_name[room_type_t.r_soundproof] = "Sound proof";
+array_str_name[room_type_t.r_mine_on]    = "Mine (ON)";
+array_str_name[room_type_t.r_mine_off]   = "Mine (OFF)";
 
 //Descriptions
 array_str_descr = array_create(room_type_t.COUNT);
 array_str_descr = array_fill(array_spr, "");
 
-array_str_descr[room_type_t.r_entrance]   = "Nothing happens here.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus dictum eleifend. Integer ullamcorper arcu volutpat justo vestibulum, et pharetra sapien dapibus. Suspendisse potenti. Nam tempus pellentesque neque et varius. Morbi sit amet facilisis erat. Aenean cursus placerat luctus. Vivamus suscipit congue lacus, a rutrum ligula ornare eget.";
+array_str_descr[room_type_t.r_entrance]   = "Nothing happens here.";
 
-array_str_descr[room_type_t.r_exit]       = "Come here when you get the Broom";
-array_str_descr[room_type_t.r_mechanical] = "stuff";
+array_str_descr[room_type_t.r_exit]       = "Come here when you get the Broom.";
+array_str_descr[room_type_t.r_mechanical] = "This room is fancy, but it does nothing.";
+array_str_descr[room_type_t.r_medical]    = "There's plenty of medical equipment here. #WIN: Your character is healed.";
+array_str_descr[room_type_t.r_death]      = "Sounds pretty deadly, it'd be wise to not enter this room. #WIN: Your character is injured.#LOSE: Your character dies.";
+array_str_descr[room_type_t.r_soundproof] = "This room blocks outgoing sound. It will prevent speak messages from reaching characters on the other side.";
+array_str_descr[room_type_t.r_mine_on]    = "There's an active mine in that room! #LOSE: Your character is injured.";
+array_str_descr[room_type_t.r_mine_off]   = "There's a deactivated mine in that room, I could use it against my opponents... #WIN: The mine gets activated.";
 </string>
           </argument>
         </arguments>
@@ -124,6 +147,33 @@ array_str_descr[room_type_t.r_mechanical] = "stuff";
             <kind>1</kind>
             <string>if ds_exists(grid_rooms, ds_type_grid) ds_grid_destroy(grid_rooms); 
 if ds_exists(characters_list, ds_type_list) ds_list_destroy(characters_list);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Makes sure this isn't called the first time this room is entered
+if(global.minigame_success != noone)
+    {
+    rc_minigame_finished(global.minigame_success);
+    }
 </string>
           </argument>
         </arguments>
@@ -177,7 +227,7 @@ if(mroom_mouseover != noone)
     
     
     
-    f_y += sprite_get_height(mroom_mouseover.sprite_index);
+    f_y += sprite_get_height(mroom_mouseover.sprite_index) / 2;
     f_y += f_vspacing;
     
     draw_set_font(fnt_arial24);

@@ -11,8 +11,14 @@
       <sprite>sprites\spr_Room_empty</sprite>
       <sprite>sprites\spr_Room_entrance</sprite>
       <sprite>sprites\spr_Room_exit</sprite>
+      <sprite>sprites\spr_Room_medical</sprite>
       <sprite>sprites\spr_Room_mechanical</sprite>
       <sprite>sprites\spr_Character</sprite>
+      <sprite>sprites\spr_Character_dead</sprite>
+      <sprite>sprites\spr_Room_death</sprite>
+      <sprite>sprites\spr_Room_mine_on</sprite>
+      <sprite>sprites\spr_Room_mine_off</sprite>
+      <sprite>sprites\spr_Room_soundproof</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -61,10 +67,23 @@
             <script>scripts\rc_write_actions.gml</script>
             <script>scripts\rc_buffer_write_action.gml</script>
           </scripts>
+          <scripts name="minigames phase">
+            <script>scripts\rc_minigame_finished.gml</script>
+            <script>scripts\____minigames_enum.gml</script>
+          </scripts>
+          <scripts name="effects">
+            <script>scripts\____effects_enum.gml</script>
+            <script>scripts\rc_effects_finished.gml</script>
+            <script>scripts\rc_run_effects.gml</script>
+            <script>scripts\rc_injured_scrolling_text.gml</script>
+            <script>scripts\rc_update_flagged_rooms.gml</script>
+          </scripts>
+          <script>scripts\rc_character_from_pid.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
           <script>scripts\mroom_update_char_coords.gml</script>
+          <script>scripts\mroom_set_type.gml</script>
         </scripts>
         <scripts name="Character">
           <script>scripts\character_create.gml</script>
@@ -99,6 +118,8 @@
           <script>scripts\client_disconnected.gml</script>
           <script>scripts\client_to_string.gml</script>
         </scripts>
+        <script>scripts\buffer_writeu8.gml</script>
+        <script>scripts\buffer_readu8.gml</script>
       </scripts>
       <scripts name="Scrolling_text">
         <script>scripts\scrolling_text.gml</script>
@@ -120,6 +141,7 @@
       <script>scripts\array_fill.gml</script>
       <script>scripts\valid_index.gml</script>
     </scripts>
+    <script>scripts\u_random.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial12</font>
@@ -138,12 +160,14 @@
     </objects>
     <object>objects\Scrolling_text_manager</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\r_start</room>
     <room>rooms\r_main</room>
   </rooms>
-  <constants number="23">
-    <constant name="VERIFY_ENABLED">1</constant>
+  <constants number="24">
+    <constant name="DEATH_IS_REAL">true</constant>
+    <constant name="VERIFY_ENABLED">true</constant>
     <constant name="dir4_RR">0</constant>
     <constant name="dir4_UP">1</constant>
     <constant name="dir4_LL">2</constant>

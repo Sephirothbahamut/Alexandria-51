@@ -2,7 +2,8 @@
 var buffer = argument0;
 /// ______________________________________
 scrolling_text("Actions running phase");
-with(Button) { instance_destroy(); }
+with(Button)  { instance_destroy(); }
+with(Textbox) { instance_destroy(); }
 
 with(Rooms_controller)
     {//Client side of server's Rooms_controller.event_user(0)

@@ -12,6 +12,6 @@ if(action >= action_t.move and action <= action_t.push)
     }
 else if(action == action_t.talk)
     {
-    //TODO send string data
+    buffer_write(buffer, buffer_string, data);
     }
 //else { send no data }

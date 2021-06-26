@@ -7,8 +7,10 @@ var net = buffer_read(buffer, buffer_u8);
 
 switch(net)
     {
-    case net_t.client_set_name: _server_client_set_name(client, buffer); break;
+    case net_t.client_set_name:  _server_client_set_name (client, buffer); break;
     
-    case net_t.actions_run:  rc_actions_run(client); break;
-    case net_t.actions_wait: rc_actions_character_set(client, buffer); break;
+    case net_t.actions_wait:     rc_actions_character_set(client, buffer); break;
+    case net_t.actions_run:      rc_actions_run          (client);         break;
+    case net_t.minigame_start:   rc_minigame_finished    (client, buffer); break;
+    case net_t.minigame_effects: rc_effects_finished     (client);         break;
     }

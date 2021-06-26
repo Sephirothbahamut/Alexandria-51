@@ -17,21 +17,21 @@ with(character)
             alarm[0] = 3 * room_speed;
             break;
         case action_t.talk: 
-            scrolling_text(client_owner.s_name + " has spoken.");  
+            character_action_talk(character, data);
             alarm[0] = 3 * room_speed;
             break;
         case action_t.move: 
-            scrolling_text(client_owner.s_name + " is  moving to "      + string(data) + ".");  
+            scrolling_text(client_owner.s_name + " is  moving to "      + dir4_to_string(data) + ".");  
             character_action_move(character, data);
             alarm[0] = 3 * room_speed;
             break;
         case action_t.look: 
-            scrolling_text(client_owner.s_name + " is looking at "      + string(data) + ".");   
+            scrolling_text(client_owner.s_name + " is looking at "      + dir4_to_string(data) + ".");   
             character_action_look(character, data); 
             alarm[0] = 3 * room_speed;
             break;
         case action_t.push: 
-            scrolling_text(client_owner.s_name + " is pushing towards " + string(data) + ".");  
+            scrolling_text(client_owner.s_name + " is pushing towards " + dir4_to_string(data) + ".");  
             character_action_push(character, data);
             alarm[0] = 3 * room_speed;
             break;

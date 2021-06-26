@@ -9,8 +9,6 @@ var room_type  = verify(argument4, var_t.uint_t);
 
 var ret = instance_create(0, 0, MRoom);
 grid_element_init(ret, u_grid_x, u_grid_y, f_orig_x, f_orig_y);
-ret.room_type = room_type;
-
-ret.sprite_index = Rooms_controller.array_spr[room_type];
+mroom_set_type(ret, room_type);
 
 return ret;
