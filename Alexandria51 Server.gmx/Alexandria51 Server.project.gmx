@@ -160,7 +160,6 @@
     </objects>
     <object>objects\Scrolling_text_manager</object>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\r_start</room>
     <room>rooms\r_main</room>

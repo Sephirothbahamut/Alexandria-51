@@ -198,9 +198,10 @@ keyboard_string = "";
             <kind>1</kind>
             <string>/// Call cheat
 var cheat = map_s_commands[? s_cmd];
-if(!is_undefined(cheat))
+if(!is_undefined(cheat)){
     script_execute(cheat);
-
+    b_visible = false;
+}
 keyboard_string = "";
 </string>
           </argument>
