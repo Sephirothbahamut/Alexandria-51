@@ -1,4 +1,4 @@
-/// rooms_controller_buffer_fill_level(buffer)
+/// rc_buffer_fill_level(buffer)
 var buffer = argument0;
 /// ______________________________________
 

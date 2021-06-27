@@ -1,4 +1,4 @@
-/// _rooms_controller_random_room_type(b_include_exit)
+/// _rc_random_room_type(b_include_exit)
 var b_include_exit = verify(argument0, var_t.bool_t);
 /// ______________________________________
 

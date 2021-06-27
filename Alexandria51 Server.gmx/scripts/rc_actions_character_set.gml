@@ -5,7 +5,7 @@ var buffer = argument1;
 
 
 
-var character = rooms_controller_char_from_pid(client.u_pid);
+var character = rc_char_from_pid(client.u_pid);
 rc_receive_actions(character, buffer);
 
 show_debug_message("Received actions from player " + string(client.u_pid));

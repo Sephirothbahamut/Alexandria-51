@@ -176,7 +176,7 @@ buffer_delete(buffer);
 //Start running actions
 b_running_actions = true;
 u_curr__character = u_first_character;
-rooms_controller_action_run_next();
+rc_action_run_next();
 </string>
           </argument>
         </arguments>

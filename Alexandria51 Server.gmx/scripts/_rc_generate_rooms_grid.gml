@@ -1,4 +1,4 @@
-/// _rooms_controller_generate_rooms_grid(u_width, u_height, list_room_pool)
+/// _rc_generate_rooms_grid(u_width, u_height, list_room_pool)
 var u_width  = verify(argument0, var_t.uint_t);
 var u_height = verify(argument1, var_t.uint_t);
 var list_room_types_pool = verify_container(argument2, var_t.list_t, false, var_t.uint_t);

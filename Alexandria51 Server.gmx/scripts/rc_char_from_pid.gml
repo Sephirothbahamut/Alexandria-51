@@ -1,4 +1,4 @@
-/// rooms_controller_char_from_client(u_pid)
+/// rc_char_from_client(u_pid)
 var u_pid = verify(argument0, var_t.uint_t);
 /// ______________________________________
 

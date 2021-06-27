@@ -19,6 +19,7 @@
       <sprite>sprites\spr_Room_soundproof</sprite>
       <sprite>sprites\spr_Room_mine_off</sprite>
       <sprite>sprites\spr_Room_mine_on</sprite>
+      <sprite>sprites\spr_Broom</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_Button</sprite>
