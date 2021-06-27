@@ -327,7 +327,7 @@ for(var u = 0; u &lt; ds_list_size(Rooms_controller.characters_list); u++)
     
     //Exclude empty, entrance, exit
     var room_type = character.mroom_current.room_type;
-    if(room_type &gt; room_type_t.r_mechanical and (character.u_hp &gt; 0 or not DEATH_IS_REAL))
+    if(room_type &gt; room_type_t.r_mechanical and not character_is_dead(character))
         {
         var minigame_id = u_random(minigame_t.COUNT);
         buffer_writeu8(buffer, minigame_id);

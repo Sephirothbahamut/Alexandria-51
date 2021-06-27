@@ -1,8 +1,7 @@
 /// rc_create_action_selection_buttons()
 
 //if dead you can't do stuff
-if DEATH_IS_REAL and 
-    (rc_character_from_pid(Manager.u_pid).u_hp <= 0) 
+if character_is_dead(rc_character_from_pid(Manager.u_pid))
     { return 0; }
 
 var f_x = 16;
