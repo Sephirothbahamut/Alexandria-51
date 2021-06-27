@@ -16,7 +16,10 @@ for(var u = 0; u < ds_list_size(Rooms_controller.characters_list); u++)
     var character = Rooms_controller.characters_list[|u]
     
     //if character isn't done AND its client has an actual client connected
-    if (not character.b_done) and (character.client_owner.socket != -1) { b_all_done = false; break; }
+    if (not character.b_done) 
+        and (character.client_owner.socket != -1) 
+        and not character_is_dead(character)
+        { b_all_done = false; break; }
     }
 
 if(b_all_done)
