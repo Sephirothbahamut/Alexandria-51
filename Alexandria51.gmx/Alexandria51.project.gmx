@@ -161,6 +161,9 @@
         <script>scripts\textbox_create.gml</script>
         <script>scripts\ui_set_focus.gml</script>
       </scripts>
+      <scripts name="Fader">
+        <script>scripts\fader_create.gml</script>
+      </scripts>
     </scripts>
     <scripts name="verification">
       <script>scripts\_type_t_to_str.gml</script>
@@ -299,6 +302,9 @@
         </scripts>
       </scripts>
       <script>scripts\minigame_end.gml</script>
+      <scripts name="Minigame_end_manager">
+        <script>scripts\mem_create.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -345,7 +351,9 @@
         <object>objects\cc_Controller</object>
       </objects>
       <object>objects\Cheat_console</object>
+      <object>objects\Minigame_end_manager</object>
     </objects>
+    <object>objects\Fader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_start</room>

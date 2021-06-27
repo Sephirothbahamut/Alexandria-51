@@ -2,6 +2,7 @@
 /// ______________________________________
 var grid_room_types = global.grid_room_types;
 var list_chars_positions = global.list_chars_positions;
+var broom_coords = global.broom_coords;
 /// ______________________________________
 
 var controller = instance_create(0, 0, Rooms_controller);
@@ -27,6 +28,9 @@ for(var u_y = 0; u_y < controller.u_height; u_y++)
         grid_rooms[# u_x, u_y] = mroom_create(u_x, u_y, f_orig_x, f_orig_y, grid_room_types[# u_x, u_y]);
         }
     }
+    
+var mroom_broom = grid_rooms[# broom_coords[X], broom_coords[Y]];
+mroom_broom.b_has_broom = true;   
 
 // ??? Do not do this, because reasons ¯\_(ツ)_/¯ :) :) :)
 //ds_map_destroy(grid_room_types);
@@ -43,6 +47,7 @@ for(var u = 0; u < u_char_count; u++)
     var client_owner = manager_client_from_pid(u);
     ds_list_add(chars_list, character_create(client_owner, mroom));
     }
+
 
 return controller;
 

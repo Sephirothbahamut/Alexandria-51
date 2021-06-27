@@ -392,13 +392,14 @@ with(Character)
     action_1 = action_t.pass;
     action_2 = action_t.pass;
     b_minigame_won = false;
+    b_done = false;
     }
 var buffer = server_create_buffer(net_t.actions_wait);
 server_send_all(buffer);
 buffer_delete(buffer);
 
 
-alarm[0] = 5 * room_speed;
+alarm[0] = 65 * room_speed;
 
 </string>
           </argument>

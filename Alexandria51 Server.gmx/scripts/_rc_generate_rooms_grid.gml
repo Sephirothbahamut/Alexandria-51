@@ -34,6 +34,12 @@ switch(u_random(4))
 var mroom_exit = grid_rooms[# u_exit_x, u_exit_y];
 mroom_set_type(mroom_exit, room_type_t.r_exit);
 
+// Add broom
+var u_broom_x = u_random(u_width);
+var u_broom_y = u_random(u_height);
+var mroom_broom = grid_rooms[# u_broom_x, u_broom_y];
+mroom_broom.b_has_broom = true;
+
 var ret;
 ret[0] = grid_rooms;
 ret[1] = mroom_entrance;

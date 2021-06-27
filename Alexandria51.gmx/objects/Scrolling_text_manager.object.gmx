@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,9 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Constants
-u_LIFETIME =  5 * room_speed
-f_MAX_SPEED = 2
+            <string>/// Toucan
+var toucan = "░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░░░░░#░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░░░░░#░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░░░░░#░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░░░░░#░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░░░░░#░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░░░░░#░░░░░░░░░░░░░▐░░░░▐███████████▄░░░░░░░#░░░░░le░░░░░░░▐░░░░▐█████████████▄░░░░#░░░░toucan░░░░░░▀▄░░░▐██████████████▄░#░░░░░░has░░░░░░░░▀▄▄████████████████▄░#░░░░░arrived░░░░░░░░░░░░█▀██████░░░░░░";
+/*"░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░░░░░
+░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░░░░░
+░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░░░░░
+░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░░░░░
+░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░░░░░
+░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░░░░░
+░░░░░░░░░░░░░▐░░░░▐███████████▄░░░░░░░
+░░░░░le░░░░░░░▐░░░░▐█████████████▄░░░░
+░░░░toucan░░░░░░▀▄░░░▐██████████████▄░
+░░░░░░has░░░░░░░░▀▄▄████████████████▄░
+░░░░░arrived░░░░░░░░░░░░█▀██████░░░░░░"*/
+
 </string>
           </argument>
         </arguments>
@@ -49,7 +60,12 @@ f_MAX_SPEED = 2
           <argument>
             <kind>1</kind>
             <string>/// Init
-s_text = "";
+u_max_lines = 5;
+
+u_current_last = 0;
+
+list_s_messages = ds_list_create();
+ds_list_add(list_s_messages, "GAME START");
 
 event_user(0);
 </string>
@@ -57,7 +73,7 @@ event_user(0);
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -74,13 +90,14 @@ event_user(0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>
+ds_list_destroy(list_s_messages);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="6" enumb="61">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -97,14 +114,15 @@ event_user(0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>f_alpha = (alarm[0] / u_LIFETIME)
-vspeed = -(f_alpha * f_MAX_SPEED);
+            <string>u_current_last++;
+var u_upper_limit = ds_list_size(list_s_messages);
+if(u_current_last &gt;= u_upper_limit) { u_current_last = u_upper_limit - 1; }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="10">
+    <event eventtype="6" enumb="60">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -121,13 +139,8 @@ vspeed = -(f_alpha * f_MAX_SPEED);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Init
-alarm[0] = u_LIFETIME;
-f_alpha = 1;
-
-x = window_get_width() / 2;
-y = window_get_height() / 2;
-
+            <string>u_current_last--;
+if(u_current_last &lt; 0) { u_current_last = 0; }
 </string>
           </argument>
         </arguments>
@@ -150,36 +163,52 @@ y = window_get_height() / 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
+            <string>
+// setup string to be drawn
+var str = "";
 
-draw_set_halign(fa_center);
-draw_set_valign(fa_bottom);
+var u_first = u_current_last - u_max_lines;
+if(u_first &lt; 0) { u_first = 0; }
 
-
-if (string_count("Le Toucan", s_text) &gt; 0) and (string_count("has arrived", s_text) &gt; 0)
+for(var u = u_current_last; u &gt;= u_first; u--)
     {
-    draw_set_alpha(f_alpha);
-    draw_set_font(fnt_monospace);
-    draw_text(window_get_width() / 2, window_get_height() / 2,
-"░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░░░░░
-░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░░░░░
-░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░░░░░
-░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░░░░░
-░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░░░░░
-░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░░░░░
-░░░░░░░░░░░░░▐░░░░▐███████████▄░░░░░░░
-░░░░░le░░░░░░░▐░░░░▐█████████████▄░░░░
-░░░░toucan░░░░░░▀▄░░░▐██████████████▄░
-░░░░░░has░░░░░░░░▀▄▄████████████████▄░
-░░░░░arrived░░░░░░░░░░░░█▀██████░░░░░")
+    str = list_s_messages[|u] + "#________________________________#" + str;
     }
-else
-    {
-    draw_set_font(fnt_arial24);
 
-    draw_set_alpha(f_alpha);
-    }
-draw_text(x, y, s_text);
+// set here for the string_height_ext calculations
+draw_set_font(fnt_arial12)
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+var f_padding = 8;
+    
+
+var f_width = window_get_width();
+var f_str_width = f_width - (f_padding * 2);
+var f_str_height = string_height_ext(str, 15, f_str_width);
+var f_height = f_padding /*bottom*/ + f_str_height + f_padding /*top*/;
+
+var f_orig_x = 0;
+var f_orig_y = window_get_height() - f_height;
+
+var f_str_orig_x = f_padding;
+var f_str_orig_y = f_orig_y + f_padding;
+
+// BG
+draw_set_alpha(.75);
+draw_set_color(c_dkgray)
+
+draw_rectangle(f_orig_x, f_orig_y, f_orig_x + f_width, f_orig_y + f_height, false);
+
+draw_set_alpha(1);
+draw_set_color(c_gray)
+
+draw_line(f_orig_x, f_orig_y, f_orig_x + f_width, f_orig_y);
+
+// Text
+draw_set_alpha(1);
+draw_set_color(c_white);
+draw_text_ext(f_str_orig_x, f_str_orig_y, str, 15, f_str_width);
 </string>
           </argument>
         </arguments>

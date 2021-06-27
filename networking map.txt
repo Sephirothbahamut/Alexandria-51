@@ -1,0 +1,15 @@
+connect > server send [client_send_socket, client socket] > client send [my_socket, client_set_name, string name] >
+server if name was unused or used but with no client currently connected to it
+	send [client_joined, player id, player name] > all other clients
+	send [client_accepted, player id, other clients size, (for each other client) [id, name]] > client
+server if name was used
+	send [client_name_rejected] > client
+
+/// With puzzles
+Turns:
+server send [actions_wait] > clients send [actions_wait, action_1_id, action_1_data, action_2_id, action_2_data] >
+server send [actions_run, first player id, actions list size, (for each character) [action1, action2, action1data, action2data]] >
+client run actions ... then send [actions_run] > 
+server send (different for each client) [minigame_start, minigame id (COUNT means no minigame)] > client run minigame ... then send [minigame_start, b_success] > 
+server send [minigame_effects, (for each character) [id of the effect to run]] > client run effect ... then send [minigame_effects]
+server goto Turns
