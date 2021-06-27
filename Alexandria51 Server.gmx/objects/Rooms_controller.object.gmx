@@ -48,7 +48,37 @@ array_spr[room_type_t.r_soundproof] = spr_Room_soundproof;
 array_spr[room_type_t.r_mine_on]    = spr_Room_mine_on;
 array_spr[room_type_t.r_mine_off]   = spr_Room_mine_off;
 
+//Spawning chances
+array_chance = array_create(room_type_t.COUNT);
+array_chance = array_fill(array_spr, spr_Room_empty);
 
+// Assign weights
+array_chance[room_type_t.r_entrance]   = 0;
+array_chance[room_type_t.r_exit]       = 0;
+array_chance[room_type_t.r_empty]      = 3;
+array_chance[room_type_t.r_mechanical] = 0;
+array_chance[room_type_t.r_medical]    = 1;
+array_chance[room_type_t.r_death]      = 1;
+array_chance[room_type_t.r_soundproof] = 3;
+array_chance[room_type_t.r_mine_on]    = 2;
+array_chance[room_type_t.r_mine_off]   = 2;
+
+// Recalc in %
+var f_tot = 0;
+for(var u = room_type_t.r_empty; u &lt; room_type_t.COUNT; u++)
+    {
+    f_tot += array_chance[u];
+    }
+for(var u = room_type_t.r_empty; u &lt; room_type_t.COUNT; u++)
+    {
+    array_chance[u] /= f_tot;
+    }
+
+// Turn in cumulative %
+for(var u = room_type_t.r_empty + 1; u &lt; room_type_t.COUNT; u++)
+    {
+    array_chance[u] += array_chance[u - 1];
+    }
 </string>
           </argument>
         </arguments>

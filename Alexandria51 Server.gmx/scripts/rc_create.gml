@@ -6,10 +6,10 @@ var u_grid_w = 7;
 var u_grid_h = 7;
 
 //create level
-var list_room_type = _rc_generate_list_room_type(u_grid_w * u_grid_h);
+var tmp = _rc_generate_rooms_grid(u_grid_w, u_grid_h);
 
-var grid_rooms = _rc_generate_rooms_grid(u_grid_w, u_grid_h, list_room_type);
-var entrance = grid_rooms[# u_grid_w div 2, u_grid_h div 2];
+var grid_rooms = tmp[0]
+var entrance = tmp[1];
 
 rc_assign_grid(controller, grid_rooms);
 

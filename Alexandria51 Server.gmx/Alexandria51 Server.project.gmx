@@ -80,6 +80,7 @@
             <script>scripts\rc_update_flagged_rooms.gml</script>
           </scripts>
           <script>scripts\rc_character_from_pid.gml</script>
+          <script>scripts\rc_random_room_type.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
