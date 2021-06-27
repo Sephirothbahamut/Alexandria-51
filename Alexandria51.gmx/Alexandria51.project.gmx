@@ -109,6 +109,7 @@
             <script>scripts\rc_injured_scrolling_text.gml</script>
           </scripts>
           <script>scripts\rc_character_from_pid.gml</script>
+          <script>scripts\rc_update_broom.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
@@ -366,7 +367,7 @@
     </rooms>
   </rooms>
   <constants number="24">
-    <constant name="DEATH_IS_REAL">false</constant>
+    <constant name="DEATH_IS_REAL">true</constant>
     <constant name="VERIFY_ENABLED">true</constant>
     <constant name="dir4_RR">0</constant>
     <constant name="dir4_UP">1</constant>

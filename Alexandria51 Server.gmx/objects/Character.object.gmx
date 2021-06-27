@@ -67,6 +67,8 @@ b_minigame_won = false;
 //Variables to reset multiple times in different phases of each turn
 b_done = false;
 
+b_has_broom = false;
+
 u_hp = 2;
 </string>
           </argument>
@@ -109,6 +111,12 @@ draw_text(x + (sprite_get_width(sprite_index) / 2), y - 36, client_owner.s_name)
 
 if(u_hp &gt; 0) { draw_text(x + (sprite_get_width(spr_Character)      / 2), y - 36, client_owner.s_name); }
 else         { draw_text(x + (sprite_get_width(spr_Character_dead) / 2), y - 36, client_owner.s_name); }
+
+if b_has_broom
+    {
+    draw_sprite_ext(spr_Broom, -1, x + 23 - sprite_xoffset, y + 22 - sprite_yoffset,
+        .6, .6, 0, c_white, 1);
+    }
 </string>
           </argument>
         </arguments>

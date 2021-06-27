@@ -269,6 +269,7 @@ server_send_all(buffer);
 buffer_delete(buffer);
 
 rc_run_effects();
+rc_update_broom();
 </string>
           </argument>
         </arguments>
