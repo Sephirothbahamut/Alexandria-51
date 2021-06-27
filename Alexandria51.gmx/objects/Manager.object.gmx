@@ -35,7 +35,7 @@ socket = -1;//The actual networking socket on this side
 /// Must exist before changing room
 global.grid_room_types = noone;
 global.list_chars_positions = noone;
-
+global.broom_coords = noone;
 
 //Draw
 b_draw = false;

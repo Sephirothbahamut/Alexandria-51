@@ -31,5 +31,5 @@ with(character)
             break;
         }
     
-    rooms_controller_action_run_next();
+    rc_action_run_next();
     }

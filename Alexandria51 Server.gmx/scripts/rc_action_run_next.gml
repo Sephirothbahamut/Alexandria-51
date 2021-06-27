@@ -1,4 +1,4 @@
-/// rooms_controller_action_run_next()
+/// rc_action_run_next()
 with(Rooms_controller)
     {
     if(u_curr__character == u_first_character)

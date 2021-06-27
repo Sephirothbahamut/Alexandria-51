@@ -19,6 +19,7 @@
       <sprite>sprites\spr_Room_soundproof</sprite>
       <sprite>sprites\spr_Room_mine_off</sprite>
       <sprite>sprites\spr_Room_mine_on</sprite>
+      <sprite>sprites\spr_Broom</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_Button</sprite>
@@ -108,6 +109,7 @@
             <script>scripts\rc_injured_scrolling_text.gml</script>
           </scripts>
           <script>scripts\rc_character_from_pid.gml</script>
+          <script>scripts\rc_update_broom.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
@@ -124,6 +126,7 @@
             <script>scripts\character_action_look.gml</script>
             <script>scripts\character_action_push.gml</script>
           </scripts>
+          <script>scripts\character_is_dead.gml</script>
         </scripts>
       </scripts>
       <script>scripts\grid_element_init.gml</script>
@@ -158,6 +161,9 @@
         <script>scripts\button_create.gml</script>
         <script>scripts\textbox_create.gml</script>
         <script>scripts\ui_set_focus.gml</script>
+      </scripts>
+      <scripts name="Fader">
+        <script>scripts\fader_create.gml</script>
       </scripts>
     </scripts>
     <scripts name="verification">
@@ -297,6 +303,9 @@
         </scripts>
       </scripts>
       <script>scripts\minigame_end.gml</script>
+      <scripts name="Minigame_end_manager">
+        <script>scripts\mem_create.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -343,7 +352,9 @@
         <object>objects\cc_Controller</object>
       </objects>
       <object>objects\Cheat_console</object>
+      <object>objects\Minigame_end_manager</object>
     </objects>
+    <object>objects\Fader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_start</room>
@@ -356,7 +367,7 @@
     </rooms>
   </rooms>
   <constants number="24">
-    <constant name="DEATH_IS_REAL">false</constant>
+    <constant name="DEATH_IS_REAL">true</constant>
     <constant name="VERIFY_ENABLED">true</constant>
     <constant name="dir4_RR">0</constant>
     <constant name="dir4_UP">1</constant>

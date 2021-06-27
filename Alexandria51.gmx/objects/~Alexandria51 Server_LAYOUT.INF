@@ -1,0 +1,23 @@
+;*** BEGIN **********************************************************
+;**                                                                **
+;** Automatically generated on: Sun Jun 27 16:44:00 2021           **
+;**                                                                **
+;** MakeCAB Version: 5.00                                 **
+;**                                                                **
+;*** BEGIN **********************************************************
+
+
+[SourceDisksNames]
+1=Application Source Media,C:\Users\Sephi\Documents\Uni\Online Game Design\OGD-Project\Alexandria51.gmx\objects\~Alexandria51 Server.CAB,0
+
+[SourceDisksFiles]
+Alexandria51 Server.exe=1,,4612096,0
+D3DX9_43.dll=1,,1998168,0
+data.win=1,,998924,0
+options.ini=1,,97,0
+splash.png=1,,42183,0
+;*** END ************************************************************
+;**                                                                **
+;** Automatically generated on: Sun Jun 27 16:44:00 2021           **
+;**                                                                **
+;*** END ************************************************************

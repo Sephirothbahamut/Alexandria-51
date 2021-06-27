@@ -16,4 +16,5 @@ with(Rooms_controller)
     }
     
 rc_run_effects();
+rc_update_broom();
 

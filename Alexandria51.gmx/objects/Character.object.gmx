@@ -64,6 +64,8 @@ action_2_data = noone;
 
 b_minigame_won = false;
 
+b_has_broom = false;
+
 u_hp = 2;
 </string>
           </argument>
@@ -130,7 +132,13 @@ rc_action_run_next();
     
     if client_owner != noone
         {
-draw_text(x + (sprite_get_width(sprite_index) / 2), y - 36, client_owner.s_name);
+        draw_text(x + (sprite_get_width(sprite_index) / 2), y - 36, client_owner.s_name);
+        }
+        
+    if b_has_broom
+        {
+        draw_sprite_ext(spr_Broom, -1, x + 23 - sprite_xoffset, y + 22 - sprite_yoffset,
+            .6, .6, 0, c_white, 1);
         }
     }
 </string>

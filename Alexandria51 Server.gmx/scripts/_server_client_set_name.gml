@@ -72,7 +72,7 @@ if(b_tmp)
         }
     else
         {
-        var buffer_level = rooms_controller_create_buffer_level();
+        var buffer_level = rc_create_buffer_level();
         server_send_to(client, buffer_level);
         buffer_delete(buffer_level);
         }

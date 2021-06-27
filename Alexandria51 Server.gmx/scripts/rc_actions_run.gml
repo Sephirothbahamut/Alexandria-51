@@ -2,7 +2,7 @@
 var client = verify(argument0, var_t.object_t, false, Client);
 /// ______________________________________
 //This client/character has finished running actions on the client side
-var character = rooms_controller_char_from_pid(client.u_pid);
+var character = rc_char_from_pid(client.u_pid);
 
 character.b_done = true;
 

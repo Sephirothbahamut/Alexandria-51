@@ -35,6 +35,8 @@ b_revealed = false;
 
 characters_list = ds_list_create();
 
+b_has_broom = false;
+
 //flag to do stuff if the event requires a change
 b_event_flag = false;
 </string>
@@ -109,9 +111,15 @@ b_event_flag = false;
 
 if b_revealed
     {
-    draw_sprite_ext(spr_Room,     0,           x, y, 1, 1, 0, c_white, 1)
+    draw_sprite_ext(spr_Room,     0,           x, y, 1, 1, 0, c_white, 1);
     draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, 0, c_white, 1);
-    draw_sprite_ext(spr_Room,     1,           x, y, 1, 1, 0, c_white, 1)
+    draw_sprite_ext(spr_Room,     1,           x, y, 1, 1, 0, c_white, 1);
+    
+    if b_has_broom
+        {
+        draw_sprite_ext(spr_Broom, -1, x + (sprite_width / 2), y + (sprite_height / 2),
+            1, 1, 0, c_white, 1);
+        }
     }
 else
     {
@@ -121,6 +129,7 @@ else
     }
 
 draw_sprite_ext(spr_Room,     2,           x, y, 1, 1, 0, c_white, 1)
+
 
 </string>
           </argument>

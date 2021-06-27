@@ -19,6 +19,7 @@
       <sprite>sprites\spr_Room_mine_on</sprite>
       <sprite>sprites\spr_Room_mine_off</sprite>
       <sprite>sprites\spr_Room_soundproof</sprite>
+      <sprite>sprites\spr_Broom</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -48,19 +49,19 @@
       <scripts name="Main_game">
         <scripts name="Rooms_controller">
           <scripts name="pvt">
-            <script>scripts\_rooms_controller_random_room_type.gml</script>
-            <script>scripts\_rooms_controller_generate_rooms_grid.gml</script>
-            <script>scripts\_rooms_controller_generate_list_room_type.gml</script>
+            <script>scripts\_rc_random_room_type.gml</script>
+            <script>scripts\_rc_generate_rooms_grid.gml</script>
+            <script>scripts\_rc_generate_list_room_type.gml</script>
           </scripts>
-          <script>scripts\rooms_controller_accepting_actions.gml</script>
-          <script>scripts\rooms_controller_assign_grid.gml</script>
-          <script>scripts\rooms_controller_char_from_pid.gml</script>
-          <script>scripts\rooms_controller_buffer_fill_level.gml</script>
-          <script>scripts\rooms_controller_create.gml</script>
-          <script>scripts\rooms_controller_create_buffer_level.gml</script>
+          <script>scripts\rc_accepting_actions.gml</script>
+          <script>scripts\rc_assign_grid.gml</script>
+          <script>scripts\rc_char_from_pid.gml</script>
+          <script>scripts\rc_buffer_fill_level.gml</script>
+          <script>scripts\rc_create.gml</script>
+          <script>scripts\rc_create_buffer_level.gml</script>
           <scripts name="actions">
             <script>scripts\rc_actions_run.gml</script>
-            <script>scripts\rooms_controller_action_run_next.gml</script>
+            <script>scripts\rc_action_run_next.gml</script>
             <script>scripts\rc_actions_character_set.gml</script>
             <script>scripts\rc_receive_actions.gml</script>
             <script>scripts\rc_read_action.gml</script>
@@ -79,6 +80,8 @@
             <script>scripts\rc_update_flagged_rooms.gml</script>
           </scripts>
           <script>scripts\rc_character_from_pid.gml</script>
+          <script>scripts\rc_random_room_type.gml</script>
+          <script>scripts\rc_update_broom.gml</script>
         </scripts>
         <scripts name="MRoom">
           <script>scripts\mroom_create.gml</script>
@@ -93,6 +96,7 @@
             <script>scripts\character_action_move.gml</script>
             <script>scripts\character_action_push.gml</script>
           </scripts>
+          <script>scripts\character_is_dead.gml</script>
         </scripts>
       </scripts>
       <script>scripts\grid_element_init.gml</script>
