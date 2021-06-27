@@ -2,7 +2,9 @@
 var buffer = argument0;
 /// ______________________________________
 
-switch(buffer_readu8(buffer))
+var u_minigame_index = buffer_readu8(buffer);
+
+switch(u_minigame_index)
     {
     case minigame_t.invert_tiles:   room_goto(r_it_Main);        break;
     case minigame_t.tiles_path:     room_goto(r_tp_Main);        break;

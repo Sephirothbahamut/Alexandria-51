@@ -1,2 +1,0 @@
-///reset
-room_restart();

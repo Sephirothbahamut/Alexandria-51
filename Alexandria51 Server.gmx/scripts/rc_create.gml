@@ -6,6 +6,7 @@ var u_grid_w = 7;
 var u_grid_h = 7;
 
 //create level
+randomize();
 var tmp = _rc_generate_rooms_grid(u_grid_w, u_grid_h);
 
 var grid_rooms = tmp[0]

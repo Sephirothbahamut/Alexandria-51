@@ -25,10 +25,10 @@ var u_exit_x;
 var u_exit_y;
 switch(u_random(4))
     {
-    case 0: u_exit_x = 0;       u_exit_y = 0;        break;
-    case 1: u_exit_x = u_width; u_exit_y = 0;        break;
-    case 2: u_exit_x = 0;       u_exit_y = u_height; break;
-    case 3: u_exit_x = u_width; u_exit_y = u_height; break;
+    case 0: u_exit_x = 0;           u_exit_y = 0;            break;
+    case 1: u_exit_x = u_width - 1; u_exit_y = 0;            break;
+    case 2: u_exit_x = 0;           u_exit_y = u_height - 1; break;
+    case 3: u_exit_x = u_width - 1; u_exit_y = u_height - 1; break;
     }
     
 var mroom_exit = grid_rooms[# u_exit_x, u_exit_y];
